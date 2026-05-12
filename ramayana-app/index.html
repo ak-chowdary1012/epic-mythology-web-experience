@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A cinematic Ramayana character encyclopedia built as an immersive frontend showcase.">
+  <meta name="theme-color" content="#0A1228">
+  <title>Ramayana | Immersive Epic Storytelling</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="loader" id="pageLoader" aria-hidden="true">
+    <div class="loader-ring"></div>
+    <div class="loader-title">RAMAYANA</div>
+  </div>
+
+  <a class="skip-link" href="#characters">Skip to characters</a>
+
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a class="nav-brand" href="#top" aria-label="Ramayana home">
+      <span class="brand-mark">ॐ</span>
+      <span>
+        <span class="brand-title">Ramayana</span>
+        <span class="brand-subtitle">Immersive Epic</span>
+      </span>
+    </a>
+    <div class="nav-links" aria-label="Page sections">
+      <a href="#characters">Characters</a>
+      <a href="#filters">Explore</a>
+      <a href="#legacy">Legacy</a>
+    </div>
+  </nav>
+
+  <main class="app-container" id="top">
+    <header class="header reveal-section">
+      <div class="header-ornament" aria-hidden="true">
+        <div class="ornament-line"></div>
+        <div class="ornament-dot"></div>
+        <div class="ornament-dot ornament-dot-large"></div>
+        <div class="ornament-dot"></div>
+        <div class="ornament-line"></div>
+      </div>
+      <p class="header-sanskrit">॥ श्रीमद्वाल्मीकीय रामायण ॥</p>
+      <h1 class="header-title">RAMAYANA</h1>
+      <p class="header-sub">The Divine Epic · Valmiki's Immortal Vision</p>
+      <p class="header-desc">Every soul who walked this eternal story — gods, sages, warriors, and the devoted — enshrined in light.</p>
+    </header>
+
+    <section class="controls-panel reveal-section" id="filters" aria-label="Character search and filters">
+      <div class="search-bar">
+        <span class="search-icon" aria-hidden="true">✦</span>
+        <label class="sr-only" for="searchInput">Search characters</label>
+        <input class="search-input" type="search" placeholder="Seek a character..." id="searchInput" autocomplete="off">
+      </div>
+
+      <div class="filter-section" id="filterSection" role="list" aria-label="Filter characters by category">
+        <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All Characters</button>
+        <button class="filter-btn" type="button" data-filter="divine" aria-pressed="false">⟁ Divine</button>
+        <button class="filter-btn" type="button" data-filter="hero" aria-pressed="false">◈ Heroes</button>
+        <button class="filter-btn" type="button" data-filter="villain" aria-pressed="false">◆ Villains</button>
+        <button class="filter-btn" type="button" data-filter="sage" aria-pressed="false">✦ Sages</button>
+        <button class="filter-btn" type="button" data-filter="ally" aria-pressed="false">◉ Allies</button>
+        <button class="filter-btn" type="button" data-filter="other" aria-pressed="false">◌ Others</button>
+      </div>
+    </section>
+
+    <section class="showcase-section reveal-section" id="characters" aria-labelledby="charactersTitle">
+      <div class="section-heading">
+        <p class="section-kicker">Sacred Archive</p>
+        <h2 id="charactersTitle">Character Constellation</h2>
+      </div>
+      <div class="grid" id="characterGrid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer reveal-section" id="legacy">
+    <div>
+      <p class="footer-kicker">Valmiki's Immortal Vision</p>
+      <p class="footer-title">A cinematic frontend tribute to the Ramayana.</p>
+    </div>
+    <a class="footer-link" href="#top">Return to the beginning</a>
+  </footer>
+
+  <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal" id="modal" role="document">
+      <button class="modal-close" type="button" id="modalClose" aria-label="Close character details">✕</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+</body>
+</html>
