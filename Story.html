@@ -3,1492 +3,886 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The sacred story of Ramayana — Valmiki's immortal epic, retold through seven Kandas.">
+  <meta name="description" content="The sacred story of the Ramayana — Valmiki's immortal epic retold through seven Kandas. A cinematic tribute to the eternal dharma of Sri Rama.">
   <meta name="theme-color" content="#0A1228">
+  <meta property="og:title" content="Ramayana | The Sacred Story">
+  <meta property="og:description" content="Seven Kandas. Twenty-four thousand shlokas. One eternal truth. An immersive retelling of Valmiki's Ramayana.">
+  <meta property="og:type" content="website">
   <title>Ramayana | The Sacred Story</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
-  <style>
-    /* ─── TOKENS ─────────────────────────────────────────────────────── */
-    :root {
-      --bg-deep:        #04080F;
-      --bg-mid:         #0A1228;
-      --bg-card:        #0D1830;
-      --bg-glass:       rgba(13, 24, 48, 0.72);
-      --gold:           #C9A84C;
-      --gold-light:     #E8C96A;
-      --gold-dim:       #8A6A2A;
-      --gold-glow:      rgba(201,168,76,0.18);
-      --copper:         #B87333;
-      --red-divine:     #8B2020;
-      --red-glow:       rgba(139,32,32,0.25);
-      --text-primary:   #F0E6CC;
-      --text-secondary: #A89070;
-      --text-muted:     #5A4E3A;
-      --border:         rgba(201,168,76,0.18);
-      --border-active:  rgba(201,168,76,0.55);
-      --shadow-gold:    0 0 40px rgba(201,168,76,0.12);
-      --font-display:   'Cinzel Decorative', serif;
-      --font-heading:   'Cinzel', serif;
-      --font-body:      'EB Garamond', Georgia, serif;
-      --radius:         4px;
-      --transition:     0.38s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* ─── RESET & BASE ───────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 17px; }
-
-    body {
-      background: var(--bg-deep);
-      color: var(--text-primary);
-      font-family: var(--font-body);
-      line-height: 1.75;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* ─── STARFIELD ──────────────────────────────────────────────────── */
-    .starfield {
-      position: fixed; inset: 0; pointer-events: none; z-index: 0;
-      background:
-        radial-gradient(ellipse 120% 60% at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 65%),
-        radial-gradient(ellipse 80% 40% at 80% 80%, rgba(139,32,32,0.08) 0%, transparent 60%),
-        var(--bg-deep);
-    }
-    .starfield::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image:
-        radial-gradient(1px 1px at 12% 18%, rgba(240,230,204,0.7) 0%, transparent 100%),
-        radial-gradient(1px 1px at 27% 55%, rgba(240,230,204,0.5) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 43% 8%, rgba(201,168,76,0.6) 0%, transparent 100%),
-        radial-gradient(1px 1px at 61% 34%, rgba(240,230,204,0.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 76% 72%, rgba(240,230,204,0.6) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 88% 20%, rgba(201,168,76,0.5) 0%, transparent 100%),
-        radial-gradient(1px 1px at 5% 88%, rgba(240,230,204,0.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 34% 78%, rgba(240,230,204,0.5) 0%, transparent 100%),
-        radial-gradient(1px 1px at 55% 60%, rgba(240,230,204,0.35) 0%, transparent 100%),
-        radial-gradient(1.5px 1.5px at 92% 48%, rgba(201,168,76,0.4) 0%, transparent 100%),
-        radial-gradient(1px 1px at 18% 42%, rgba(240,230,204,0.3) 0%, transparent 100%),
-        radial-gradient(1px 1px at 70% 15%, rgba(240,230,204,0.5) 0%, transparent 100%);
-    }
-
-    /* ─── LOADER ─────────────────────────────────────────────────────── */
-    .loader {
-      position: fixed; inset: 0; z-index: 9999;
-      background: var(--bg-deep);
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 1.6rem;
-      transition: opacity 0.7s ease, visibility 0.7s ease;
-    }
-    .loader.loaded { opacity: 0; visibility: hidden; }
-    .loader-ring {
-      width: 56px; height: 56px;
-      border: 2px solid var(--border);
-      border-top-color: var(--gold);
-      border-radius: 50%;
-      animation: spin 1.1s linear infinite;
-    }
-    .loader-title {
-      font-family: var(--font-display); font-size: 1rem;
-      letter-spacing: 0.35em; color: var(--gold);
-      text-transform: uppercase; opacity: 0.85;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* ─── SKIP LINK ──────────────────────────────────────────────────── */
-    .skip-link {
-      position: absolute; top: -100px; left: 1rem;
-      background: var(--gold); color: var(--bg-deep);
-      padding: 0.5rem 1rem; font-family: var(--font-heading);
-      font-size: 0.8rem; border-radius: var(--radius);
-      transition: top 0.2s;
-    }
-    .skip-link:focus { top: 1rem; }
-
-    /* ─── NAV ────────────────────────────────────────────────────────── */
-    .site-nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 2.5rem;
-      background: rgba(4, 8, 15, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-brand {
-      display: flex; align-items: center; gap: 0.75rem;
-      text-decoration: none; color: var(--text-primary);
-    }
-    .brand-mark {
-      font-size: 1.5rem; color: var(--gold);
-      text-shadow: 0 0 20px var(--gold);
-    }
-    .brand-title {
-      display: block; font-family: var(--font-display);
-      font-size: 0.95rem; letter-spacing: 0.12em; color: var(--gold);
-    }
-    .brand-subtitle {
-      display: block; font-family: var(--font-heading);
-      font-size: 0.62rem; letter-spacing: 0.22em;
-      color: var(--text-secondary); text-transform: uppercase;
-    }
-    .nav-links {
-      display: flex; gap: 2rem;
-    }
-    .nav-links a {
-      font-family: var(--font-heading); font-size: 0.72rem;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--text-secondary); text-decoration: none;
-      transition: color var(--transition);
-    }
-    .nav-links a:hover { color: var(--gold); }
-
-    /* ─── HERO ───────────────────────────────────────────────────────── */
-    .story-hero {
-      position: relative; z-index: 1;
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      padding: 8rem 2rem 5rem;
-      overflow: hidden;
-    }
-    .hero-mandala {
-      position: absolute; inset: 0; z-index: 0;
-      display: flex; align-items: center; justify-content: center;
-      pointer-events: none;
-      opacity: 0.07;
-    }
-    .hero-mandala svg {
-      width: min(80vw, 700px); height: auto;
-      animation: mandalaSpin 90s linear infinite;
-    }
-    @keyframes mandalaSpin { to { transform: rotate(360deg); } }
-
-    .hero-content { position: relative; z-index: 1; max-width: 760px; }
-    .hero-ornament {
-      display: flex; align-items: center; justify-content: center;
-      gap: 0.6rem; margin-bottom: 2rem;
-    }
-    .ornament-line {
-      width: 60px; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold));
-    }
-    .ornament-line.rev {
-      background: linear-gradient(90deg, var(--gold), transparent);
-    }
-    .ornament-dot {
-      width: 5px; height: 5px; border-radius: 50%;
-      background: var(--gold);
-    }
-    .ornament-dot-large {
-      width: 8px; height: 8px;
-      border: 1.5px solid var(--gold);
-      background: transparent;
-    }
-
-    .hero-sanskrit {
-      font-family: var(--font-body); font-style: italic;
-      font-size: 1rem; color: var(--gold-dim);
-      letter-spacing: 0.08em; margin-bottom: 1.5rem;
-      opacity: 0.85;
-    }
-    .hero-title {
-      font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 4.5rem);
-      font-weight: 900; letter-spacing: 0.12em;
-      color: var(--gold-light);
-      text-shadow: 0 0 80px rgba(201,168,76,0.35), 0 2px 0 rgba(0,0,0,0.6);
-      line-height: 1.1; margin-bottom: 1rem;
-    }
-    .hero-sub {
-      font-family: var(--font-heading); font-size: 0.8rem;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--text-secondary); margin-bottom: 2rem;
-    }
-    .hero-desc {
-      font-size: 1.15rem; color: var(--text-secondary);
-      max-width: 560px; margin: 0 auto 3rem;
-      line-height: 1.9;
-    }
-    .hero-scroll-hint {
-      font-family: var(--font-heading); font-size: 0.68rem;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--gold-dim); animation: pulse 2.4s ease-in-out infinite;
-    }
-    @keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
-
-    /* ─── KANDA TIMELINE ─────────────────────────────────────────────── */
-    .kanda-nav {
-      position: relative; z-index: 1;
-      background: rgba(4, 8, 15, 0.9);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 1.2rem 2rem;
-      display: flex; align-items: center; justify-content: center;
-      gap: 0;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    .kanda-nav::-webkit-scrollbar { display: none; }
-    .kanda-tab {
-      flex: 0 0 auto;
-      font-family: var(--font-heading); font-size: 0.66rem;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--text-muted); cursor: pointer;
-      padding: 0.6rem 1.2rem;
-      border: none; background: none;
-      border-bottom: 2px solid transparent;
-      transition: color var(--transition), border-color var(--transition);
-      white-space: nowrap;
-    }
-    .kanda-tab:hover { color: var(--text-secondary); }
-    .kanda-tab.active {
-      color: var(--gold);
-      border-bottom-color: var(--gold);
-    }
-
-    /* ─── MAIN STORY LAYOUT ──────────────────────────────────────────── */
-    .story-main {
-      position: relative; z-index: 1;
-      max-width: 1200px; margin: 0 auto;
-      padding: 5rem 2rem 6rem;
-    }
-
-    /* ─── REVEAL ANIMATION ───────────────────────────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* ─── KANDA SECTION ──────────────────────────────────────────────── */
-    .kanda-section {
-      display: none;
-      animation: fadeIn 0.55s ease;
-    }
-    .kanda-section.active { display: block; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-    .kanda-header {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 2rem;
-      align-items: start;
-      margin-bottom: 4rem;
-      padding-bottom: 2.5rem;
-      border-bottom: 1px solid var(--border);
-    }
-    .kanda-number {
-      font-family: var(--font-display); font-size: 6rem;
-      font-weight: 900; line-height: 1;
-      color: transparent;
-      -webkit-text-stroke: 1px var(--gold-dim);
-      opacity: 0.3;
-      margin-bottom: -1rem;
-    }
-    .kanda-title {
-      font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2.5rem);
-      color: var(--gold-light); letter-spacing: 0.08em; line-height: 1.2;
-      margin-bottom: 0.5rem;
-    }
-    .kanda-subtitle {
-      font-family: var(--font-heading); font-size: 0.72rem;
-      letter-spacing: 0.28em; text-transform: uppercase;
-      color: var(--text-secondary); margin-bottom: 1rem;
-    }
-    .kanda-intro {
-      font-size: 1.1rem; color: var(--text-secondary);
-      line-height: 1.9; max-width: 600px;
-    }
-    .kanda-badge {
-      font-family: var(--font-heading); font-size: 0.65rem;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--bg-deep); background: var(--gold);
-      padding: 0.5rem 1.1rem; border-radius: var(--radius);
-      white-space: nowrap; align-self: start;
-    }
-
-    /* ─── EPISODE CARDS ──────────────────────────────────────────────── */
-    .episodes-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 4rem;
-    }
-    .episode-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.8rem;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
-    }
-    .episode-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      opacity: 0;
-      transition: opacity var(--transition);
-    }
-    .episode-card:hover {
-      border-color: var(--border-active);
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-gold);
-    }
-    .episode-card:hover::before { opacity: 1; }
-
-    .episode-number {
-      font-family: var(--font-heading); font-size: 0.62rem;
-      letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--gold-dim); margin-bottom: 1rem;
-    }
-    .episode-icon {
-      font-size: 2rem; margin-bottom: 0.8rem; display: block;
-      filter: drop-shadow(0 0 8px var(--gold-glow));
-    }
-    .episode-title {
-      font-family: var(--font-heading); font-size: 1.05rem;
-      font-weight: 600; color: var(--text-primary);
-      letter-spacing: 0.04em; margin-bottom: 0.75rem;
-      line-height: 1.4;
-    }
-    .episode-text {
-      font-size: 0.95rem; color: var(--text-secondary);
-      line-height: 1.8;
-    }
-    .episode-tag {
-      display: inline-block; margin-top: 1rem;
-      font-family: var(--font-heading); font-size: 0.6rem;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gold-dim); border: 1px solid var(--border);
-      padding: 0.25rem 0.7rem; border-radius: 2px;
-    }
-
-    /* ─── FEATURED VERSE ─────────────────────────────────────────────── */
-    .verse-block {
-      position: relative;
-      border-left: 2px solid var(--gold);
-      padding: 2rem 2.5rem;
-      margin: 3rem 0;
-      background: linear-gradient(90deg, var(--gold-glow), transparent);
-      border-radius: 0 var(--radius) var(--radius) 0;
-    }
-    .verse-label {
-      font-family: var(--font-heading); font-size: 0.6rem;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1rem;
-    }
-    .verse-sanskrit {
-      font-family: var(--font-body); font-style: italic;
-      font-size: 1.25rem; color: var(--gold-light);
-      line-height: 1.9; margin-bottom: 0.8rem;
-    }
-    .verse-translation {
-      font-size: 0.95rem; color: var(--text-secondary);
-      line-height: 1.8;
-    }
-    .verse-source {
-      margin-top: 0.8rem;
-      font-family: var(--font-heading); font-size: 0.62rem;
-      letter-spacing: 0.2em; color: var(--text-muted);
-    }
-
-    /* ─── CHARACTER SPOTLIGHT ────────────────────────────────────────── */
-    .spotlight-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem; margin: 3rem 0;
-    }
-    .spotlight-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.4rem 1.2rem;
-      text-align: center;
-      transition: border-color var(--transition), box-shadow var(--transition);
-    }
-    .spotlight-card:hover {
-      border-color: var(--border-active);
-      box-shadow: 0 0 24px var(--gold-glow);
-    }
-    .spotlight-symbol {
-      font-size: 2.2rem; display: block; margin-bottom: 0.8rem;
-      filter: drop-shadow(0 0 6px var(--gold-glow));
-    }
-    .spotlight-symbol img {
-      width: 74px; height: 74px; display: block; margin: 0 auto;
-      object-fit: cover; object-position: center top;
-      border-radius: 50%; border: 1px solid var(--border-active);
-      box-shadow: 0 0 22px var(--gold-glow);
-    }
-    .spotlight-name {
-      font-family: var(--font-heading); font-size: 0.85rem;
-      font-weight: 600; color: var(--gold-light);
-      letter-spacing: 0.06em; margin-bottom: 0.4rem;
-    }
-    .spotlight-role {
-      font-size: 0.8rem; color: var(--text-secondary);
-    }
-
-    /* ─── SECTION DIVIDER ────────────────────────────────────────────── */
-    .divider {
-      display: flex; align-items: center; gap: 1rem;
-      margin: 4rem 0; color: var(--gold-dim);
-    }
-    .divider::before, .divider::after {
-      content: ''; flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border));
-    }
-    .divider::after {
-      background: linear-gradient(90deg, var(--border), transparent);
-    }
-    .divider-symbol {
-      font-size: 1.1rem;
-      color: var(--gold);
-      font-family: var(--font-body);
-    }
-
-    /* ─── SHLOKA TICKER ──────────────────────────────────────────────── */
-    .shloka-ticker {
-      position: relative; z-index: 1;
-      overflow: hidden;
-      background: rgba(201,168,76,0.06);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 0.9rem 0;
-    }
-    .ticker-inner {
-      display: flex; white-space: nowrap;
-      animation: ticker 38s linear infinite;
-    }
-    .ticker-inner span {
-      font-family: var(--font-body); font-style: italic;
-      font-size: 0.95rem; color: var(--gold-dim);
-      padding: 0 3rem;
-    }
-    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-    /* ─── FOOTER ─────────────────────────────────────────────────────── */
-    .site-footer {
-      position: relative; z-index: 1;
-      text-align: center;
-      padding: 4rem 2rem;
-      border-top: 1px solid var(--border);
-      background: var(--bg-mid);
-    }
-    .footer-kicker {
-      font-family: var(--font-heading); font-size: 0.65rem;
-      letter-spacing: 0.3em; text-transform: uppercase;
-      color: var(--gold-dim); margin-bottom: 0.6rem;
-    }
-    .footer-title {
-      font-family: var(--font-display); font-size: 1rem;
-      color: var(--text-secondary); letter-spacing: 0.06em;
-      margin-bottom: 2rem;
-    }
-    .footer-nav {
-      display: flex; gap: 2rem; justify-content: center;
-      margin-bottom: 2rem; flex-wrap: wrap;
-    }
-    .footer-nav a {
-      font-family: var(--font-heading); font-size: 0.7rem;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--text-secondary); text-decoration: none;
-      transition: color var(--transition);
-    }
-    .footer-nav a:hover { color: var(--gold); }
-    .footer-copy {
-      font-size: 0.82rem; color: var(--text-muted);
-    }
-
-    /* ─── MODAL ──────────────────────────────────────────────────────── */
-    .episode-modal {
-      position: fixed; inset: 0; z-index: 200;
-      background: rgba(4, 8, 15, 0.92);
-      backdrop-filter: blur(8px);
-      display: flex; align-items: center; justify-content: center;
-      padding: 2rem;
-      opacity: 0; visibility: hidden;
-      transition: opacity 0.35s ease, visibility 0.35s ease;
-    }
-    .episode-modal.open { opacity: 1; visibility: visible; }
-    .modal-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border-active);
-      border-radius: var(--radius);
-      max-width: 680px; width: 100%;
-      max-height: 85vh; overflow-y: auto;
-      padding: 2.5rem;
-      position: relative;
-      transform: translateY(24px);
-      transition: transform 0.35s ease;
-      scrollbar-width: thin;
-      scrollbar-color: var(--gold-dim) transparent;
-    }
-    .episode-modal.open .modal-box { transform: translateY(0); }
-    .modal-box::-webkit-scrollbar { width: 4px; }
-    .modal-box::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
-    .modal-close-btn {
-      position: absolute; top: 1.2rem; right: 1.2rem;
-      background: none; border: 1px solid var(--border);
-      color: var(--text-secondary); width: 32px; height: 32px;
-      border-radius: 50%; cursor: pointer; font-size: 0.9rem;
-      display: flex; align-items: center; justify-content: center;
-      transition: border-color var(--transition), color var(--transition);
-    }
-    .modal-close-btn:hover { border-color: var(--gold); color: var(--gold); }
-    .modal-tag {
-      font-family: var(--font-heading); font-size: 0.6rem;
-      letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--gold-dim); margin-bottom: 1.2rem;
-    }
-    .modal-title {
-      font-family: var(--font-display); font-size: 1.4rem;
-      color: var(--gold-light); margin-bottom: 1.5rem;
-      line-height: 1.3; letter-spacing: 0.04em;
-    }
-    .modal-body {
-      font-size: 1rem; color: var(--text-secondary);
-      line-height: 1.9;
-    }
-    .modal-body p { margin-bottom: 1rem; }
-    .modal-body p:last-child { margin-bottom: 0; }
-    .modal-characters {
-      display: flex; flex-wrap: wrap; gap: 0.5rem;
-      margin-top: 1.5rem; padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
-    }
-    .modal-char-tag {
-      font-family: var(--font-heading); font-size: 0.62rem;
-      letter-spacing: 0.15em; text-transform: uppercase;
-      color: var(--text-secondary); background: rgba(201,168,76,0.08);
-      border: 1px solid var(--border);
-      padding: 0.3rem 0.75rem; border-radius: var(--radius);
-    }
-
-    /* ─── RESPONSIVE ─────────────────────────────────────────────────── */
-    @media (max-width: 768px) {
-      .site-nav { padding: 1rem 1.2rem; }
-      .nav-links { display: none; }
-      .kanda-header { grid-template-columns: 1fr; }
-      .kanda-number { font-size: 4rem; }
-      .kanda-badge { align-self: start; }
-      .story-main { padding: 3rem 1.2rem 4rem; }
-      .verse-block { padding: 1.4rem 1.4rem; }
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
 </head>
 <body class="story-page">
 
-  <!-- Starfield -->
-  <div class="starfield" aria-hidden="true"></div>
+<div class="starfield" aria-hidden="true"></div>
 
-  <!-- Loader -->
-  <div class="loader" id="pageLoader" aria-hidden="true">
+<!-- LOADER -->
+<div class="loader" id="pageLoader" aria-hidden="true">
+  <div style="position:relative;width:52px;height:52px">
     <div class="loader-ring"></div>
-    <div class="loader-title">RAMAYANA</div>
+    <span class="loader-om">ॐ</span>
+  </div>
+  <p class="loader-label">Ramayana</p>
+</div>
+
+<a class="skip-link" href="#story">Skip to story</a>
+
+<!-- NAV -->
+<nav class="site-nav" aria-label="Primary navigation">
+  <a class="nav-brand" href="index.html" aria-label="Ramayana home">
+    <span class="brand-mark">ॐ</span>
+    <span>
+      <span class="brand-title">Ramayana</span>
+      <span class="brand-subtitle">Immersive Epic</span>
+    </span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html#characters">Characters</a>
+    <a href="index.html#filters">Explore</a>
+    <a href="#kandas">Kandas</a>
+    <a href="#timeline">Timeline</a>
+    <a href="index.html#legacy">Legacy</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══════════════════════════════════════════════════════ -->
+<section class="story-hero" id="top">
+  <div class="hero-mandala" aria-hidden="true">
+    <svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <circle cx="350" cy="350" r="338" stroke="#C9A84C" stroke-width="0.6"/>
+      <circle cx="350" cy="350" r="278" stroke="#C9A84C" stroke-width="0.5"/>
+      <circle cx="350" cy="350" r="218" stroke="#C9A84C" stroke-width="0.5"/>
+      <circle cx="350" cy="350" r="158" stroke="#C9A84C" stroke-width="0.5"/>
+      <circle cx="350" cy="350" r="98"  stroke="#C9A84C" stroke-width="0.5"/>
+      <circle cx="350" cy="350" r="38"  stroke="#C9A84C" stroke-width="1"/>
+      <g opacity="0.55">
+        <path d="M350 14 Q408 182 350 350 Q292 182 350 14Z" stroke="#C9A84C" stroke-width="0.5"/>
+        <path d="M350 686 Q408 518 350 350 Q292 518 350 686Z" stroke="#C9A84C" stroke-width="0.5"/>
+        <path d="M14 350 Q182 408 350 350 Q182 292 14 350Z" stroke="#C9A84C" stroke-width="0.5"/>
+        <path d="M686 350 Q518 408 350 350 Q518 292 686 350Z" stroke="#C9A84C" stroke-width="0.5"/>
+        <path d="M124 124 Q272 272 350 350 Q240 212 124 124Z" stroke="#C9A84C" stroke-width="0.5"/>
+        <path d="M576 124 Q428 272 350 350 Q460 212 576 124Z" stroke="#C9A84C" stroke-width="0.5"/>
+        <path d="M124 576 Q272 428 350 350 Q240 488 124 576Z" stroke="#C9A84C" stroke-width="0.5"/>
+        <path d="M576 576 Q428 428 350 350 Q460 488 576 576Z" stroke="#C9A84C" stroke-width="0.5"/>
+      </g>
+      <g opacity="0.18" stroke="#C9A84C" stroke-width="0.4">
+        <line x1="350" y1="12" x2="350" y2="688"/>
+        <line x1="12" y1="350" x2="688" y2="350"/>
+        <line x1="95" y1="95" x2="605" y2="605"/>
+        <line x1="605" y1="95" x2="95" y2="605"/>
+        <line x1="12" y1="194" x2="688" y2="506"/>
+        <line x1="12" y1="506" x2="688" y2="194"/>
+        <line x1="194" y1="12" x2="506" y2="688"/>
+        <line x1="506" y1="12" x2="194" y2="688"/>
+      </g>
+      <g fill="#C9A84C" opacity="0.4">
+        <polygon points="350,12 358,26 350,40 342,26"/>
+        <polygon points="350,660 358,674 350,688 342,674"/>
+        <polygon points="12,350 26,358 40,350 26,342"/>
+        <polygon points="660,350 674,358 688,350 674,342"/>
+      </g>
+      <text x="350" y="362" text-anchor="middle" font-family="serif" font-size="30"
+        fill="#C9A84C" opacity="0.9">ॐ</text>
+    </svg>
   </div>
 
-  <a class="skip-link" href="#story">Skip to story</a>
-
-  <!-- Nav -->
-  <nav class="site-nav" aria-label="Primary navigation">
-    <a class="nav-brand" href="index.html" aria-label="Ramayana home">
-      <span class="brand-mark">ॐ</span>
-      <span>
-        <span class="brand-title">Ramayana</span>
-        <span class="brand-subtitle">Immersive Epic</span>
-      </span>
-    </a>
-    <div class="nav-links">
-      <a href="index.html#characters">Characters</a>
-      <a href="#kandas">Kandas</a>
-      <a href="#story">Story</a>
-      <a href="index.html#legacy">Legacy</a>
+  <div class="hero-content">
+    <div class="ornament" aria-hidden="true">
+      <div class="ornament-line"></div>
+      <div class="ornament-dot"></div>
+      <div class="ornament-center"></div>
+      <div class="ornament-dot"></div>
+      <div class="ornament-line r"></div>
     </div>
-  </nav>
+    <p class="hero-sanskrit">॥ रामो विग्रहवान् धर्मः ॥</p>
+    <h1 class="hero-title">The Sacred Story</h1>
+    <p class="hero-sub">Valmiki's Immortal Vision · Seven Kandas · 24,000 Shlokas</p>
+    <p class="hero-desc">From a divine prince's birth to the triumph of dharma over adharma — the eternal journey of Sri Rama, enshrined in light.</p>
+    <p class="hero-scroll" aria-hidden="true">Scroll to begin</p>
+  </div>
+</section>
 
-  <!-- ── HERO ──────────────────────────────────────────────────────── -->
-  <section class="story-hero" id="top" aria-label="Story introduction">
-    <div class="hero-mandala" aria-hidden="true">
-      <svg viewBox="0 0 700 700" xmlns="http://www.w3.org/2000/svg" fill="none">
-        <circle cx="350" cy="350" r="340" stroke="#C9A84C" stroke-width="0.5"/>
-        <circle cx="350" cy="350" r="280" stroke="#C9A84C" stroke-width="0.5"/>
-        <circle cx="350" cy="350" r="220" stroke="#C9A84C" stroke-width="0.5"/>
-        <circle cx="350" cy="350" r="160" stroke="#C9A84C" stroke-width="0.5"/>
-        <circle cx="350" cy="350" r="100" stroke="#C9A84C" stroke-width="0.5"/>
-        <circle cx="350" cy="350" r="40"  stroke="#C9A84C" stroke-width="1"/>
-        <!-- 8 petals -->
-        <g opacity="0.6">
-          <path d="M350 50 Q400 200 350 350 Q300 200 350 50Z" stroke="#C9A84C" stroke-width="0.5"/>
-          <path d="M350 650 Q400 500 350 350 Q300 500 350 650Z" stroke="#C9A84C" stroke-width="0.5"/>
-          <path d="M50 350 Q200 400 350 350 Q200 300 50 350Z" stroke="#C9A84C" stroke-width="0.5"/>
-          <path d="M650 350 Q500 400 350 350 Q500 300 650 350Z" stroke="#C9A84C" stroke-width="0.5"/>
-          <path d="M137 137 Q280 280 350 350 Q280 210 137 137Z" stroke="#C9A84C" stroke-width="0.5"/>
-          <path d="M563 137 Q420 280 350 350 Q420 210 563 137Z" stroke="#C9A84C" stroke-width="0.5"/>
-          <path d="M137 563 Q280 420 350 350 Q280 490 137 563Z" stroke="#C9A84C" stroke-width="0.5"/>
-          <path d="M563 563 Q420 420 350 350 Q420 490 563 563Z" stroke="#C9A84C" stroke-width="0.5"/>
-        </g>
-        <!-- radial lines -->
-        <g opacity="0.25" stroke="#C9A84C" stroke-width="0.4">
-          <line x1="350" y1="10" x2="350" y2="690"/>
-          <line x1="10" y1="350" x2="690" y2="350"/>
-          <line x1="98" y1="98" x2="602" y2="602"/>
-          <line x1="602" y1="98" x2="98" y2="602"/>
-          <line x1="10" y1="200" x2="690" y2="500"/>
-          <line x1="10" y1="500" x2="690" y2="200"/>
-          <line x1="200" y1="10" x2="500" y2="690"/>
-          <line x1="500" y1="10" x2="200" y2="690"/>
-        </g>
-        <!-- small diamonds -->
-        <g fill="#C9A84C" opacity="0.5">
-          <polygon points="350,15 357,26 350,37 343,26"/>
-          <polygon points="350,663 357,674 350,685 343,674"/>
-          <polygon points="15,350 26,357 37,350 26,343"/>
-          <polygon points="663,350 674,357 685,350 674,343"/>
-        </g>
-        <!-- center Om symbol area -->
-        <text x="350" y="360" text-anchor="middle" font-family="serif" font-size="28" fill="#C9A84C" opacity="0.9">ॐ</text>
-      </svg>
-    </div>
+<!-- TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span>॥ रामो राजमणिः सदा विजयते ॥</span><span class="sep">·</span>
+    <span>॥ धर्मो रक्षति रक्षितः ॥</span><span class="sep">·</span>
+    <span>॥ सीतारामौ सदा नमामि ॥</span><span class="sep">·</span>
+    <span>॥ हनुमानेन सन्देशो दत्तः ॥</span><span class="sep">·</span>
+    <span>॥ सत्यं एव जयते ॥</span><span class="sep">·</span>
+    <span>॥ रामो विग्रहवान् धर्मः ॥</span><span class="sep">·</span>
+    <span>॥ रामो राजमणिः सदा विजयते ॥</span><span class="sep">·</span>
+    <span>॥ धर्मो रक्षति रक्षितः ॥</span><span class="sep">·</span>
+    <span>॥ सीतारामौ सदा नमामि ॥</span><span class="sep">·</span>
+    <span>॥ हनुमानेन सन्देशो दत्तः ॥</span><span class="sep">·</span>
+    <span>॥ सत्यं एव जयते ॥</span><span class="sep">·</span>
+    <span>॥ रामो विग्रहवान् धर्मः ॥</span><span class="sep">·</span>
+  </div>
+</div>
 
-    <div class="hero-content">
-      <div class="hero-ornament" aria-hidden="true">
-        <div class="ornament-line"></div>
-        <div class="ornament-dot"></div>
-        <div class="ornament-dot ornament-dot-large"></div>
-        <div class="ornament-dot"></div>
-        <div class="ornament-line rev"></div>
+<!-- KANDA TABS -->
+<div class="kanda-nav" id="kandas" role="tablist" aria-label="Select a Kanda">
+  <button class="kanda-tab active" data-kanda="bala"       role="tab" aria-selected="true"  aria-controls="kanda-bala">
+    <span class="tab-num">Book I</span>Bala Kanda
+  </button>
+  <button class="kanda-tab" data-kanda="ayodhya"   role="tab" aria-selected="false" aria-controls="kanda-ayodhya">
+    <span class="tab-num">Book II</span>Ayodhya Kanda
+  </button>
+  <button class="kanda-tab" data-kanda="aranya"    role="tab" aria-selected="false" aria-controls="kanda-aranya">
+    <span class="tab-num">Book III</span>Aranya Kanda
+  </button>
+  <button class="kanda-tab" data-kanda="kishkindha" role="tab" aria-selected="false" aria-controls="kanda-kishkindha">
+    <span class="tab-num">Book IV</span>Kishkindha Kanda
+  </button>
+  <button class="kanda-tab" data-kanda="sundara"   role="tab" aria-selected="false" aria-controls="kanda-sundara">
+    <span class="tab-num">Book V</span>Sundara Kanda
+  </button>
+  <button class="kanda-tab" data-kanda="yuddha"    role="tab" aria-selected="false" aria-controls="kanda-yuddha">
+    <span class="tab-num">Book VI</span>Yuddha Kanda
+  </button>
+  <button class="kanda-tab" data-kanda="uttara"    role="tab" aria-selected="false" aria-controls="kanda-uttara">
+    <span class="tab-num">Book VII</span>Uttara Kanda
+  </button>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     STORY MAIN
+═══════════════════════════════════════════════════════════════ -->
+<main class="story-main" id="story">
+
+  <!-- ══ I. BALA KANDA ════════════════════════════════════════════ -->
+  <section class="kanda-section active" id="kanda-bala" role="tabpanel" aria-labelledby="bala-h">
+    <div class="kanda-header reveal">
+      <div>
+        <span class="kanda-numeral" aria-hidden="true">I</span>
+        <h2 class="kanda-title" id="bala-h">Bala Kanda</h2>
+        <p class="kanda-label">The Book of Youth · 77 Sargas · Chapters of Origin</p>
+        <p class="kanda-intro">In Ayodhya on the banks of the Sarayu, King Dasharatha prays for an heir. Heaven answers — and an eternal story begins.</p>
       </div>
-      <p class="hero-sanskrit">॥ रामो विग्रहवान् धर्मः ॥</p>
-      <h1 class="hero-title">The Sacred Story</h1>
-      <p class="hero-sub">Valmiki's Immortal Vision · Seven Kandas</p>
-      <p class="hero-desc">From the birth of a divine prince to the triumph of dharma over adharma — the eternal journey of Sri Rama, told across twenty-four thousand shlokas.</p>
-      <p class="hero-scroll-hint">↓ Descend into the epic ↓</p>
+      <span class="kanda-badge">Book One</span>
+    </div>
+
+    <div class="sacred-summary reveal">
+      <p class="summary-label">Sacred Shloka — Valmiki Ramayana 1.1.1</p>
+      <p class="summary-shloka">तपः स्वाध्यायनिरतं तपस्वी वाग्विदां वरम् ।<br>नारदं परिपप्रच्छ वाल्मीकिर्मुनिपुङ्गवम् ॥</p>
+      <p class="summary-translation">Valmiki, foremost among sages, deep in austerity and Vedic learning, approached the divine sage Narada — best among those who wield words — and asked his eternal question.</p>
+      <p class="summary-source">Balakanda · Sarga 1 · Shloka 1</p>
+    </div>
+
+    <div class="episodes-grid">
+      <article class="episode-card manuscript-card reveal"
+        data-title="The Question That Sparked an Epic"
+        data-kanda="Bala Kanda · Sarga 1–4"
+        data-detail="<p>Sage Valmiki sits in deep contemplation when the divine sage Narada descends from the heavens. Valmiki asks: 'Is there in this world any man who is truly virtuous, heroic, grateful, truthful in his vows, firm in his conduct, and kind to all creatures?' Narada smiles — and begins to speak the name of Rama.</p><p>This divine conversation between two great sages becomes the seed from which the entire Ramayana blooms. Narada describes Rama as the embodiment of dharma itself — Ramo vigrahavān dharmaḥ.</p>"
+        data-chars="Valmiki,Narada">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 1–4</span>
+          <span class="episode-marker" aria-hidden="true">I</span>
+          <h3 class="episode-title">The Question That Sparked an Epic</h3>
+          <p class="episode-text">Sage Valmiki asks Narada: who in this world is the most virtuous? Narada's answer births the Ramayana.</p>
+          <span class="episode-category">Origin</span>
+        </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
+
+      <article class="episode-card manuscript-card reveal"
+        data-title="Putrakameshti — The Sacred Fire"
+        data-kanda="Bala Kanda · Sarga 14–16"
+        data-detail="<p>King Dasharatha performs the great Putrakameshti yajna under sage Rishyashringa. From the sacred fire emerges a divine being bearing a golden vessel of payasam — celestial nectar.</p><p>Dasharatha distributes the payasam among his three queens: Kaushalya, Kaikeyi, and Sumitra. Four divine sons are born: Rama, Bharata, and the twins Lakshmana and Shatrughna. Lord Vishnu descends to earth in four forms to fulfil a divine purpose.</p>"
+        data-chars="Dasharatha,Kaushalya,Kaikeyi,Sumitra,Rishyashringa">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 14–16</span>
+          <span class="episode-marker" aria-hidden="true">II</span>
+          <h3 class="episode-title">Putrakameshti — The Sacred Fire</h3>
+          <p class="episode-text">A great yajna is performed. From the sacrificial fire, Vishnu descends as four divine sons into the royal household of Ayodhya.</p>
+          <span class="episode-category">Divine Birth</span>
+        </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
+
+      <article class="episode-card manuscript-card reveal"
+        data-title="Vishwamitra's Forest — First Battle"
+        data-kanda="Bala Kanda · Sarga 17–30"
+        data-detail="<p>The fierce sage Vishwamitra arrives at Dasharatha's court with an unusual request: send your eldest son Rama to protect my yajna from the demons Maricha and Subahu. The king is terrified — Rama is barely sixteen — but sage Vasishtha assures Dasharatha that Rama is ready.</p><p>In the forest, Rama strikes down the demoness Tataka, defeats Maricha and Subahu, and earns the celestial weapons — Astra-vidya — from Vishwamitra himself. The young prince's divine nature begins to manifest.</p>"
+        data-chars="Rama,Vishwamitra,Dasharatha,Lakshmana,Tataka,Maricha">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 17–30</span>
+          <span class="episode-marker" aria-hidden="true">III</span>
+          <h3 class="episode-title">Vishwamitra's Forest — First Battle</h3>
+          <p class="episode-text">Young Rama accompanies sage Vishwamitra, defeats Tataka, and receives divine celestial weapons. His nature begins to reveal itself.</p>
+          <span class="episode-category">Coming of Age</span>
+        </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
+
+      <article class="episode-card manuscript-card reveal"
+        data-title="The Breaking of Shiva's Bow"
+        data-kanda="Bala Kanda · Sarga 65–68"
+        data-detail="<p>In Mithila, King Janaka has declared a swayamvara for his daughter Sita — born from the earth itself. The condition: whoever lifts and strings the Shiva Dhanush, the legendary bow of Lord Shiva, shall win her hand.</p><p>Countless kings fail, humiliated by its divine weight. Rama steps forward calmly, lifts the bow with his left hand, strings it in a single motion, and draws it so powerfully that it breaks in two with a thunderous sound that shakes the three worlds. Sita places the garland around Rama's neck. Heaven rejoices.</p>"
+        data-chars="Rama,Sita,Janaka,Vishwamitra,Lakshmana">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 65–68</span>
+          <span class="episode-marker" aria-hidden="true">IV</span>
+          <h3 class="episode-title">The Breaking of Shiva's Bow</h3>
+          <p class="episode-text">At Mithila's swayamvara, Rama lifts and breaks Shiva's mighty bow — and wins the hand of Sita Devi before the assembled kings of the world.</p>
+          <span class="episode-category">Sacred Union</span>
+        </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
+
+      <article class="episode-card manuscript-card reveal"
+        data-title="Divine Weddings and Parashurama"
+        data-kanda="Bala Kanda · Sarga 71–77"
+        data-detail="<p>The marriage of Rama and Sita is celebrated with divine splendour. Janaka also arranges marriages for Lakshmana, Bharata, and Shatrughna. As the procession returns, the fearsome sage Parashurama arrives, furious at the breaking of the Shiva bow.</p><p>Rama accepts his challenge calmly, receives the Vaishnava bow, and the fierce sage is humbled — recognising Rama as Vishnu himself. The procession continues to Ayodhya in triumph.</p>"
+        data-chars="Rama,Sita,Dasharatha,Janaka,Parashurama,Lakshmana,Urmila">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 71–77</span>
+          <span class="episode-marker" aria-hidden="true">V</span>
+          <h3 class="episode-title">Divine Weddings and Parashurama</h3>
+          <p class="episode-text">Four royal weddings unite Ayodhya and Mithila. Parashurama arrives in fury — and departs in reverence before Rama's divine presence.</p>
+          <span class="episode-category">Celebration</span>
+        </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
+    </div>
+
+    <div class="gold-divider"><span class="gold-divider-symbol">✦</span></div>
+    <p class="spotlight-label">Figures of Bala Kanda</p>
+    <div class="spotlight-row reveal">
+      <div class="spotlight-card"><span class="spotlight-glyph">Sri Rama</span><p class="spotlight-name">Sri Rama</p><p class="spotlight-role">Avatar of Vishnu · Prince of Ayodhya</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Sita Devi</span><p class="spotlight-name">Sita Devi</p><p class="spotlight-role">Daughter of Earth · Princess of Mithila</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Dasharatha</span><p class="spotlight-name">Dasharatha</p><p class="spotlight-role">King of Ayodhya · Father of Rama</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Vishwamitra</span><p class="spotlight-name">Vishwamitra</p><p class="spotlight-role">Royal Sage · Rama's First Guru</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Lakshmana</span><p class="spotlight-name">Lakshmana</p><p class="spotlight-role">Devoted Brother · Ananta's Avatar</p></div>
     </div>
   </section>
 
-  <!-- ── SHLOKA TICKER ──────────────────────────────────────────────── -->
-  <div class="shloka-ticker" aria-hidden="true">
-    <div class="ticker-inner">
-      <span>॥ रामो राजमणिः सदा विजयते ॥</span>
-      <span>·</span>
-      <span>॥ धर्मो रक्षति रक्षितः ॥</span>
-      <span>·</span>
-      <span>॥ सीतारामौ सदा नमामि ॥</span>
-      <span>·</span>
-      <span>॥ हनुमानेन सन्देशो दत्तः ॥</span>
-      <span>·</span>
-      <span>॥ सत्यं एव जयते ॥</span>
-      <span>·</span>
-      <span>॥ रामो विग्रहवान् धर्मः ॥</span>
-      <span>·</span>
-      <!-- duplicate for seamless loop -->
-      <span>॥ रामो राजमणिः सदा विजयते ॥</span>
-      <span>·</span>
-      <span>॥ धर्मो रक्षति रक्षितः ॥</span>
-      <span>·</span>
-      <span>॥ सीतारामौ सदा नमामि ॥</span>
-      <span>·</span>
-      <span>॥ हनुमानेन सन्देशो दत्तः ॥</span>
-      <span>·</span>
-      <span>॥ सत्यं एव जयते ॥</span>
-      <span>·</span>
-      <span>॥ रामो विग्रहवान् धर्मः ॥</span>
-      <span>·</span>
+  <!-- ══ II. AYODHYA KANDA ═════════════════════════════════════════ -->
+  <section class="kanda-section" id="kanda-ayodhya" role="tabpanel" aria-labelledby="ayodhya-h" hidden>
+    <div class="kanda-header reveal">
+      <div>
+        <span class="kanda-numeral" aria-hidden="true">II</span>
+        <h2 class="kanda-title" id="ayodhya-h">Ayodhya Kanda</h2>
+        <p class="kanda-label">The Book of Ayodhya · 119 Sargas · The Great Exile</p>
+        <p class="kanda-intro">Joy turns to grief in a single night. A palace intrigue orchestrated by Queen Kaikeyi shatters a kingdom — and tests the mettle of every soul within it.</p>
+      </div>
+      <span class="kanda-badge">Book Two</span>
     </div>
-  </div>
 
-  <!-- ── KANDA NAVIGATION ───────────────────────────────────────────── -->
-  <div class="kanda-nav" id="kandas" role="tablist" aria-label="Select a Kanda">
-    <button class="kanda-tab active" data-kanda="bala" role="tab" aria-selected="true">I · Bala Kanda</button>
-    <button class="kanda-tab" data-kanda="ayodhya" role="tab" aria-selected="false">II · Ayodhya Kanda</button>
-    <button class="kanda-tab" data-kanda="aranya" role="tab" aria-selected="false">III · Aranya Kanda</button>
-    <button class="kanda-tab" data-kanda="kishkindha" role="tab" aria-selected="false">IV · Kishkindha Kanda</button>
-    <button class="kanda-tab" data-kanda="sundara" role="tab" aria-selected="false">V · Sundara Kanda</button>
-    <button class="kanda-tab" data-kanda="yuddha" role="tab" aria-selected="false">VI · Yuddha Kanda</button>
-    <button class="kanda-tab" data-kanda="uttara" role="tab" aria-selected="false">VII · Uttara Kanda</button>
-  </div>
+    <div class="sacred-summary reveal">
+      <p class="summary-label">The Fateful Words — Ayodhyakanda Sarga 18</p>
+      <p class="summary-shloka">रामं दशरथो राजा वनवासाय राघवम् ।<br>प्रेषयामास धर्मात्मा कैकेय्या वचनं श्रुत्वा ॥</p>
+      <p class="summary-translation">Dasharatha, the righteous king, hearing the words of Kaikeyi, sent Rama — descendant of Raghu — into exile in the forest.</p>
+      <p class="summary-source">Ayodhyakanda · Sarga 18</p>
+    </div>
 
-  <!-- ── STORY MAIN ─────────────────────────────────────────────────── -->
-  <main class="story-main" id="story" aria-label="Story content">
-
-    <!-- ══ BALA KANDA ══════════════════════════════════════════════════ -->
-    <section class="kanda-section active reveal" id="kanda-bala" aria-labelledby="bala-title" role="tabpanel">
-      <div class="kanda-header">
-        <div>
-          <div class="kanda-number">I</div>
-          <h2 class="kanda-title" id="bala-title">Bala Kanda</h2>
-          <p class="kanda-subtitle">The Book of Youth · 77 Sargas · Chapters of Origin</p>
-          <p class="kanda-intro">The universe breathes. In the sacred city of Ayodhya on the banks of the Sarayu, King Dasharatha of the Ikshvaku dynasty prays for an heir. The heavens answer — and so begins an eternal story.</p>
-        </div>
-        <span class="kanda-badge">Book One</span>
-      </div>
-
-      <div class="verse-block reveal">
-        <p class="verse-label">Opening Shloka — Valmiki Ramayana 1.1.1</p>
-        <p class="verse-sanskrit">तपः स्वाध्यायनिरतं तपस्वी वाग्विदां वरम् ।<br>नारदं परिपप्रच्छ वाल्मीकिर्मुनिपुङ्गवम् ॥</p>
-        <p class="verse-translation">Valmiki, the foremost of sages, deep in austerity and Vedic learning, approached the divine sage Narada — best among those who wield words — and asked him his eternal question.</p>
-        <p class="verse-source">Balakanda · Sarga 1 · Shloka 1</p>
-      </div>
-
-      <div class="episodes-grid">
-        <!-- Episode cards for Bala Kanda -->
-        <div class="episode-card reveal"
-          data-title="The Question of Narada"
-          data-kanda="Bala Kanda · Sarga 1"
-          data-detail="<p>Sage Valmiki sits in deep contemplation when the divine sage Narada descends from the heavens. Valmiki asks: 'Is there in this world any man who is truly virtuous, heroic, grateful, truthful in his vows, firm in his conduct, and kind to all creatures?' Narada smiles — and begins to speak the name of Rama.</p><p>This divine conversation between two great sages becomes the seed from which the entire Ramayana blooms. Narada describes Rama as the embodiment of dharma itself — Ramo vigrahavān dharmaḥ.</p>"
-          data-chars="Valmiki,Narada">
-          <span class="episode-number">Sarga 1–4</span>
-          <span class="episode-icon">🪷</span>
-          <h3 class="episode-title">The Question That Sparked an Epic</h3>
-          <p class="episode-text">Sage Valmiki asks Narada: who in this world is the most virtuous? Narada's answer births the Ramayana.</p>
-          <span class="episode-tag">Origin</span>
-        </div>
-
-        <div class="episode-card reveal"
-          data-title="Putrakameshti — The Sacred Fire"
-          data-kanda="Bala Kanda · Sarga 15"
-          data-detail="<p>King Dasharatha, grief-stricken by his childlessness, performs the great Putrakameshti yajna under the guidance of sage Rishyashringa. The fire blazes, and from its sacred depths emerges a divine being bearing a golden vessel of payasam — celestial nectar.</p><p>Dasharatha distributes the payasam among his three queens — Kaushalya, Kaikeyi, and Sumitra. In due time, four divine sons are born: Rama, Bharata, and the twins Lakshmana and Shatrughna. Lord Vishnu himself descends to earth in four forms to fulfil a divine purpose.</p>"
-          data-chars="Dasharatha,Kaushalya,Kaikeyi,Sumitra,Rishyashringa">
-          <span class="episode-number">Sarga 14–16</span>
-          <span class="episode-icon">🔥</span>
-          <h3 class="episode-title">Putrakameshti — The Sacred Fire</h3>
-          <p class="episode-text">A great yajna is performed. From the sacrificial fire, Vishnu descends as four divine sons into the royal household of Ayodhya.</p>
-          <span class="episode-tag">Divine Birth</span>
-        </div>
-
-        <div class="episode-card reveal"
-          data-title="Vishwamitra's Ashram — First Tests"
-          data-kanda="Bala Kanda · Sarga 19–27"
-          data-detail="<p>The fierce sage Vishwamitra arrives at Dasharatha's court with an unusual request: send your eldest son Rama to protect my yajna from the demons Maricha and Subahu. The king is terrified — Rama is barely sixteen — but the sage Vasishtha assures Dasharatha that Rama is ready.</p><p>In the forest, Rama strikes down the demoness Tataka, defeats Maricha and Subahu, and earns the celestial weapons — Astra-vidya — from Vishwamitra himself. The young prince's divine nature begins to manifest.</p>"
-          data-chars="Rama,Vishwamitra,Dasharatha,Lakshmana,Tataka,Maricha">
-          <span class="episode-number">Sarga 17–30</span>
-          <span class="episode-icon">⚔️</span>
-          <h3 class="episode-title">Vishwamitra's Forest — First Battle</h3>
-          <p class="episode-text">Young Rama accompanies sage Vishwamitra into the forest, defeats Tataka, and receives divine celestial weapons.</p>
-          <span class="episode-tag">Coming of Age</span>
-        </div>
-
-        <div class="episode-card reveal"
-          data-title="The Breaking of Shiva's Bow"
-          data-kanda="Bala Kanda · Sarga 66–67"
-          data-detail="<p>In the kingdom of Mithila, King Janaka has declared a swayamvara for his daughter Sita — born from the earth itself, destined for a divine purpose. The condition: whoever can lift and string the Shiva Dhanush, the legendary bow of Lord Shiva himself, shall win her hand.</p><p>Countless kings and princes have failed, humiliated by its divine weight. Rama steps forward calmly, lifts the bow with his left hand, strings it in a single motion, and draws it so powerfully that it breaks in two with a thunderous sound that shakes the three worlds. Sita places the garland around Rama's neck. Heaven rejoices.</p>"
-          data-chars="Rama,Sita,Janaka,Vishwamitra,Lakshmana">
-          <span class="episode-number">Sarga 65–68</span>
-          <span class="episode-icon">🏹</span>
-          <h3 class="episode-title">The Breaking of Shiva's Bow</h3>
-          <p class="episode-text">At Mithila's swayamvara, Rama lifts and breaks Shiva's mighty bow — and wins the hand of Sita Devi.</p>
-          <span class="episode-tag">Sacred Union</span>
-        </div>
-
-        <div class="episode-card reveal"
-          data-title="The Wedding of Rama and Sita"
-          data-kanda="Bala Kanda · Sarga 72–77"
-          data-detail="<p>The marriage of Rama and Sita is celebrated with divine splendour. King Janaka also arranges the marriages of Lakshmana to Urmila, Bharata to Mandavi, and Shatrughna to Shrutakirti — four daughters and nieces of Janaka's lineage joined to the princes of Ayodhya.</p><p>As the wedding procession returns to Ayodhya, the fearsome sage Parashurama — the destroyer of Kshatriyas — appears, furious at the breaking of the Shiva bow. Rama accepts Parashurama's challenge calmly, receives the Vaishnava bow, and the fierce sage is humbled, recognising Rama as Vishnu himself.</p>"
-          data-chars="Rama,Sita,Dasharatha,Janaka,Parashurama,Lakshmana,Urmila">
-          <span class="episode-number">Sarga 71–77</span>
-          <span class="episode-icon">🌸</span>
-          <h3 class="episode-title">Divine Weddings & Parashurama</h3>
-          <p class="episode-text">Four royal weddings unite Ayodhya and Mithila. Parashurama arrives in fury — and departs in reverence.</p>
-          <span class="episode-tag">Celebration</span>
-        </div>
-      </div>
-
-      <div class="divider"><span class="divider-symbol">✦</span></div>
-
-      <p class="kanda-subtitle" style="margin-bottom:1rem;">Key Figures of Bala Kanda</p>
-      <div class="spotlight-row reveal">
-        <div class="spotlight-card"><span class="spotlight-symbol">👑</span><p class="spotlight-name">Sri Rama</p><p class="spotlight-role">Avatar of Vishnu · Prince of Ayodhya</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🌺</span><p class="spotlight-name">Sita Devi</p><p class="spotlight-role">Daughter of Earth · Princess of Mithila</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🔱</span><p class="spotlight-name">Dasharatha</p><p class="spotlight-role">King of Ayodhya · Father of Rama</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">📿</span><p class="spotlight-name">Vishwamitra</p><p class="spotlight-role">Royal Sage · Rama's First Guru</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🏹</span><p class="spotlight-name">Lakshmana</p><p class="spotlight-role">Devoted Brother · Ananta's Avatar</p></div>
-      </div>
-    </section>
-
-    <!-- ══ AYODHYA KANDA ════════════════════════════════════════════════ -->
-    <section class="kanda-section reveal" id="kanda-ayodhya" aria-labelledby="ayodhya-title" role="tabpanel" hidden>
-      <div class="kanda-header">
-        <div>
-          <div class="kanda-number">II</div>
-          <h2 class="kanda-title" id="ayodhya-title">Ayodhya Kanda</h2>
-          <p class="kanda-subtitle">The Book of Ayodhya · 119 Sargas · The Great Exile</p>
-          <p class="kanda-intro">Joy turns to grief in a single night. On the eve of Rama's coronation, a palace intrigue orchestrated by Queen Kaikeyi shatters a kingdom — and tests the mettle of every soul within it.</p>
-        </div>
-        <span class="kanda-badge">Book Two</span>
-      </div>
-
-      <div class="verse-block reveal">
-        <p class="verse-label">Kaikeyi's Boon — The Fateful Words</p>
-        <p class="verse-sanskrit">रामं दशरथो राजा वनवासाय राघवम् ।<br>प्रेषयामास धर्मात्मा कैकेय्या वचनं श्रुत्वा ॥</p>
-        <p class="verse-translation">Dasharatha, the righteous king, hearing the words of Kaikeyi, sent Rama — descendant of Raghu — into exile in the forest.</p>
-        <p class="verse-source">Ayodhyakanda · Sarga 18</p>
-      </div>
-
-      <div class="episodes-grid">
-        <div class="episode-card reveal"
-          data-title="The Night Before the Coronation"
-          data-kanda="Ayodhya Kanda · Sarga 1–15"
-          data-detail="<p>Ayodhya is adorned in celebration. King Dasharatha, feeling the weight of age, decides to crown Rama as the crown prince. The entire kingdom rejoices — streets are lit with lamps, flowers shower from balconies, and the people of Ayodhya declare Rama the most beloved of princes.</p><p>The gods, however, are concerned. If Rama becomes king of Ayodhya, he will never go to Lanka to destroy Ravana. The celestial plan requires Rama to walk the path of exile. And so, fate moves through a serpent in the garden of paradise — the hunchbacked maid Manthara.</p>"
-          data-chars="Rama,Dasharatha,Kaushalya,Manthara,Kaikeyi">
-          <span class="episode-number">Sarga 1–15</span>
-          <span class="episode-icon">🪔</span>
+    <div class="episodes-grid">
+      <article class="episode-card manuscript-card reveal"
+        data-title="The Eve of Coronation"
+        data-kanda="Ayodhya Kanda · Sarga 1–15"
+        data-detail="<p>Ayodhya is adorned in celebration. King Dasharatha, feeling the weight of age, decides to crown Rama as the crown prince. The entire kingdom rejoices. But fate moves through the hunchbacked maid Manthara, who plants a poisonous seed in Kaikeyi's heart.</p>"
+        data-chars="Rama,Dasharatha,Kaushalya,Manthara,Kaikeyi">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 1–15</span>
+          <span class="episode-marker" aria-hidden="true">I</span>
           <h3 class="episode-title">The Eve of Coronation</h3>
           <p class="episode-text">Ayodhya blazes with joy as Rama's coronation is announced. But in the palace, Manthara plants a poisonous seed in Kaikeyi's heart.</p>
-          <span class="episode-tag">The Turn</span>
+          <span class="episode-category">The Turn</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="Kaikeyi's Two Boons"
-          data-kanda="Ayodhya Kanda · Sarga 9–12"
-          data-detail="<p>Queen Kaikeyi, manipulated by Manthara, enters the kopa-bhavana — the chamber of sorrow — and demands the two boons King Dasharatha had sworn to grant her years ago on a battlefield. Her demands are devastating: Bharata shall be crowned king, and Rama shall be exiled to the Dandaka forest for fourteen years.</p><p>Dasharatha collapses. He pleads, weeps, and begs — but Kaikeyi is unmoved. Bound by his sacred word, the honourable king has no choice. The night passes; Dasharatha does not sleep. Rama is summoned.</p>"
-          data-chars="Kaikeyi,Dasharatha,Manthara,Rama">
-          <span class="episode-number">Sarga 9–16</span>
-          <span class="episode-icon">💔</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="Kaikeyi's Two Boons"
+        data-kanda="Ayodhya Kanda · Sarga 9–16"
+        data-detail="<p>Queen Kaikeyi enters the kopa-bhavana — the chamber of sorrow — and demands the two boons King Dasharatha had sworn. Her demands are devastating: Bharata shall be crowned king, and Rama shall be exiled to the Dandaka forest for fourteen years.</p><p>Dasharatha collapses. He pleads, weeps, and begs — but Kaikeyi is unmoved. Bound by his sacred word, the king has no choice. The night passes without sleep. Rama is summoned at dawn.</p>"
+        data-chars="Kaikeyi,Dasharatha,Manthara,Rama">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 9–16</span>
+          <span class="episode-marker" aria-hidden="true">II</span>
           <h3 class="episode-title">Kaikeyi's Two Boons</h3>
-          <p class="episode-text">Kaikeyi invokes two ancient boons: Bharata's coronation and Rama's fourteen-year exile. Dasharatha is shattered.</p>
-          <span class="episode-tag">Tragedy</span>
+          <p class="episode-text">Kaikeyi invokes two ancient boons: Bharata's coronation and Rama's fourteen-year exile. Dasharatha is utterly shattered.</p>
+          <span class="episode-category">Tragedy</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="Rama Accepts the Exile"
-          data-kanda="Ayodhya Kanda · Sarga 16–20"
-          data-detail="<p>When Rama is told of the exile, his face does not change. He accepts with perfect serenity — for a Kshatriya's word, especially a father's, is sacred beyond all else. Kaushalya weeps. Lakshmana blazes with fury, ready to take up arms against Kaikeyi herself. Rama calms him with words of dharma.</p><p>Sita refuses to stay behind. She tells Rama: 'Where you go, I go. The forest with you is Ayodhya; Ayodhya without you is forest.' Lakshmana too insists on accompanying his brother. The three prepare to leave the city they love.</p>"
-          data-chars="Rama,Sita,Lakshmana,Kaushalya,Kaikeyi">
-          <span class="episode-number">Sarga 16–25</span>
-          <span class="episode-icon">🌿</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="Rama's Serene Acceptance"
+        data-kanda="Ayodhya Kanda · Sarga 16–25"
+        data-detail="<p>When told of the exile, Rama's face does not change. He accepts with perfect serenity — a father's word is sacred above all else. Lakshmana blazes with fury. Rama calms him with words of dharma.</p><p>Sita refuses to stay behind: 'Where you go, I go. The forest with you is Ayodhya; Ayodhya without you is forest.' Lakshmana too insists on accompanying his brother. Three royal souls prepare to leave.</p>"
+        data-chars="Rama,Sita,Lakshmana,Kaushalya,Kaikeyi">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 16–25</span>
+          <span class="episode-marker" aria-hidden="true">III</span>
           <h3 class="episode-title">Rama's Serene Acceptance</h3>
           <p class="episode-text">Rama accepts exile without anger. Sita and Lakshmana refuse to be left behind. Three royal souls walk into the forest.</p>
-          <span class="episode-tag">Dharma</span>
+          <span class="episode-category">Dharma</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="Dasharatha's Death"
-          data-kanda="Ayodhya Kanda · Sarga 64–65"
-          data-detail="<p>With Rama gone, the light leaves Dasharatha's eyes. The old king, unable to bear the separation from his son, breathes his last on the night after Rama's departure, haunted by an ancient curse — the Shravan Kumar incident — in which he had accidentally killed the only son of blind parents who then cursed him to die in the grief of separation from his own son.</p><p>The curse completes itself. Ayodhya falls silent. The throne stands empty.</p>"
-          data-chars="Dasharatha,Kaushalya,Kaikeyi,Bharata">
-          <span class="episode-number">Sarga 63–65</span>
-          <span class="episode-icon">🕯️</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="The Passing of Dasharatha"
+        data-kanda="Ayodhya Kanda · Sarga 63–65"
+        data-detail="<p>With Rama gone, the light leaves Dasharatha's eyes. Unable to bear the separation, the old king breathes his last, haunted by an ancient curse — the Shravan Kumar incident — in which he had accidentally killed the only son of blind parents, who then cursed him to die in the grief of separation from his own son. The curse completes itself.</p>"
+        data-chars="Dasharatha,Kaushalya,Kaikeyi,Bharata">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 63–65</span>
+          <span class="episode-marker" aria-hidden="true">IV</span>
           <h3 class="episode-title">The Passing of Dasharatha</h3>
           <p class="episode-text">Separated from Rama, Dasharatha dies of grief — fulfilling an ancient curse. Ayodhya mourns in darkness.</p>
-          <span class="episode-tag">Loss</span>
+          <span class="episode-category">Loss</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="Bharata's Refusal of the Throne"
-          data-kanda="Ayodhya Kanda · Sarga 99–116"
-          data-detail="<p>Bharata returns from his maternal grandfather's kingdom, knowing nothing of what has happened. When he learns of his mother's deception and his father's death, he is inconsolable with grief and rage. He denounces Kaikeyi and seeks Rama in the forest.</p><p>Meeting Rama at Chitrakuta, Bharata begs him to return and claim his rightful throne. Rama refuses — his father's word must be honoured for fourteen years. In an act of supreme devotion, Bharata places Rama's padukas — sandals — on the throne and rules as regent, never claiming the kingship himself.</p>"
-          data-chars="Bharata,Rama,Kaikeyi,Shatrughna,Vasishtha">
-          <span class="episode-number">Sarga 99–116</span>
-          <span class="episode-icon">👣</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="Bharata and the Golden Padukas"
+        data-kanda="Ayodhya Kanda · Sarga 99–116"
+        data-detail="<p>Bharata returns knowing nothing of what has happened. Learning of his mother's deception and his father's death, he is inconsolable. He seeks Rama at Chitrakuta and begs him to return. Rama refuses — his father's word must be honoured for fourteen years.</p><p>In an act of supreme devotion, Bharata places Rama's padukas — sandals — on the throne and rules as regent, never claiming the kingship himself, waiting for his brother's return.</p>"
+        data-chars="Bharata,Rama,Kaikeyi,Shatrughna,Vasishtha">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 99–116</span>
+          <span class="episode-marker" aria-hidden="true">V</span>
           <h3 class="episode-title">Bharata and the Golden Padukas</h3>
           <p class="episode-text">Bharata refuses the throne, places Rama's sandals upon it, and rules Ayodhya as a devoted regent for fourteen years.</p>
-          <span class="episode-tag">Devotion</span>
+          <span class="episode-category">Devotion</span>
         </div>
-      </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
+    </div>
 
-      <div class="divider"><span class="divider-symbol">✦</span></div>
-      <p class="kanda-subtitle" style="margin-bottom:1rem;">Key Figures of Ayodhya Kanda</p>
-      <div class="spotlight-row reveal">
-        <div class="spotlight-card"><span class="spotlight-symbol">👑</span><p class="spotlight-name">Dasharatha</p><p class="spotlight-role">The Grieving King</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🌑</span><p class="spotlight-name">Kaikeyi</p><p class="spotlight-role">Queen · Instrument of Fate</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🌾</span><p class="spotlight-name">Bharata</p><p class="spotlight-role">The Reluctant Regent</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🌺</span><p class="spotlight-name">Kaushalya</p><p class="spotlight-role">Mother of Rama · Queen</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🐚</span><p class="spotlight-name">Manthara</p><p class="spotlight-role">The Hunchbacked Maid</p></div>
-      </div>
-    </section>
+    <div class="gold-divider"><span class="gold-divider-symbol">✦</span></div>
+    <p class="spotlight-label">Figures of Ayodhya Kanda</p>
+    <div class="spotlight-row reveal">
+      <div class="spotlight-card"><span class="spotlight-glyph">Dasharatha</span><p class="spotlight-name">Dasharatha</p><p class="spotlight-role">The Grieving King</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Kaikeyi</span><p class="spotlight-name">Kaikeyi</p><p class="spotlight-role">Queen · Instrument of Fate</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Bharata</span><p class="spotlight-name">Bharata</p><p class="spotlight-role">The Reluctant Regent</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Kaushalya</span><p class="spotlight-name">Kaushalya</p><p class="spotlight-role">Mother of Rama · Queen</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Manthara</span><p class="spotlight-name">Manthara</p><p class="spotlight-role">The Hunchbacked Maid</p></div>
+    </div>
+  </section>
 
-    <!-- ══ ARANYA KANDA ═════════════════════════════════════════════════ -->
-    <section class="kanda-section reveal" id="kanda-aranya" aria-labelledby="aranya-title" role="tabpanel" hidden>
-      <div class="kanda-header">
-        <div>
-          <div class="kanda-number">III</div>
-          <h2 class="kanda-title" id="aranya-title">Aranya Kanda</h2>
-          <p class="kanda-subtitle">The Book of the Forest · 75 Sargas · The Abduction</p>
-          <p class="kanda-intro">In the dark forests of Dandaka, Rama dispenses justice to demons and meets ascetics. But fate darkens — Ravana plots, a golden deer deceives, and the greatest calamity of the epic unfolds.</p>
-        </div>
-        <span class="kanda-badge">Book Three</span>
+  <!-- ══ III. ARANYA KANDA ═════════════════════════════════════════ -->
+  <section class="kanda-section" id="kanda-aranya" role="tabpanel" aria-labelledby="aranya-h" hidden>
+    <div class="kanda-header reveal">
+      <div>
+        <span class="kanda-numeral" aria-hidden="true">III</span>
+        <h2 class="kanda-title" id="aranya-h">Aranya Kanda</h2>
+        <p class="kanda-label">The Book of the Forest · 75 Sargas · The Abduction</p>
+        <p class="kanda-intro">In the dark forests of Dandaka, fate darkens. Ravana plots, a golden deer deceives, and the greatest calamity of the epic unfolds.</p>
       </div>
+      <span class="kanda-badge">Book Three</span>
+    </div>
 
-      <div class="verse-block reveal">
-        <p class="verse-label">Sita's Abduction — The Turning Point</p>
-        <p class="verse-sanskrit">रावणः सीतामुत्क्षिप्य ययौ सहसा तया ।<br>रोदन्तीं राघवेति च लक्ष्मणेति च वादिनीम् ॥</p>
-        <p class="verse-translation">Ravana seized Sita and departed swiftly with her, as she cried out — "O Raghava! O Lakshmana!"</p>
-        <p class="verse-source">Aranyakanda · Sarga 49</p>
-      </div>
+    <div class="sacred-summary reveal">
+      <p class="summary-label">The Abduction — Aranyakanda Sarga 49</p>
+      <p class="summary-shloka">रावणः सीतामुत्क्षिप्य ययौ सहसा तया ।<br>रोदन्तीं राघवेति च लक्ष्मणेति च वादिनीम् ॥</p>
+      <p class="summary-translation">Ravana seized Sita and departed swiftly with her, as she cried out — "O Raghava! O Lakshmana!"</p>
+      <p class="summary-source">Aranyakanda · Sarga 49</p>
+    </div>
 
-      <div class="episodes-grid">
-        <div class="episode-card reveal"
-          data-title="Surpanakha's Humiliation"
-          data-kanda="Aranya Kanda · Sarga 17–18"
-          data-detail="<p>The demoness Surpanakha, sister of Ravana, encounters Rama in the forest and is struck by his divine beauty. She proposes marriage, attacking Sita in jealousy. Lakshmana, on Rama's command, cuts off her nose and ears. Humiliated and furious, Surpanakha flies to her brother Ravana in Lanka — and plants the seed of his doom.</p><p>She describes Sita's unparalleled beauty to Ravana, inflaming his desire. The demon king resolves to abduct her.</p>"
-          data-chars="Surpanakha,Rama,Sita,Lakshmana,Ravana">
-          <span class="episode-number">Sarga 17–19</span>
-          <span class="episode-icon">👁️</span>
+    <div class="episodes-grid">
+      <article class="episode-card manuscript-card reveal"
+        data-title="Surpanakha's Wrath"
+        data-kanda="Aranya Kanda · Sarga 17–19"
+        data-detail="<p>The demoness Surpanakha, sister of Ravana, encounters Rama in the forest and is struck by his divine beauty. She proposes marriage, attacking Sita in jealousy. Lakshmana, on Rama's command, cuts off her nose and ears. Humiliated and furious, Surpanakha flies to Ravana in Lanka and describes Sita's unparalleled beauty — inflaming his desire and planting the seed of his doom.</p>"
+        data-chars="Surpanakha,Rama,Sita,Lakshmana,Ravana">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 17–19</span>
+          <span class="episode-marker" aria-hidden="true">I</span>
           <h3 class="episode-title">Surpanakha's Wrath</h3>
           <p class="episode-text">Demoness Surpanakha is humiliated by Lakshmana. Her fury carries her to Lanka — where she describes Sita to Ravana.</p>
-          <span class="episode-tag">Catalyst</span>
+          <span class="episode-category">Catalyst</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="The Golden Deer — Maricha's Deception"
-          data-kanda="Aranya Kanda · Sarga 42–44"
-          data-detail="<p>Ravana sends the demon Maricha, disguised as a dazzling golden deer, to lure Rama away from the hermitage. Sita, enchanted by the creature's beauty, begs Rama to capture it. Lakshmana warns that it might be a demon in disguise, but Sita's longing is irresistible.</p><p>Rama chases the deer deep into the forest. Mortally struck by Rama's arrow, Maricha cries out in Rama's voice: 'O Sita! O Lakshmana!' Sita, terrified, forces Lakshmana to go search for Rama — leaving her alone. The trap is set.</p>"
-          data-chars="Ravana,Maricha,Sita,Rama,Lakshmana">
-          <span class="episode-number">Sarga 42–45</span>
-          <span class="episode-icon">🦌</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="The Golden Deer of Illusion"
+        data-kanda="Aranya Kanda · Sarga 42–45"
+        data-detail="<p>Ravana sends the demon Maricha, disguised as a dazzling golden deer, to lure Rama away. Sita, enchanted by the creature's beauty, begs Rama to capture it. Lakshmana warns that it may be a demon in disguise, but Sita's longing is irresistible.</p><p>Mortally struck by Rama's arrow, Maricha cries out in Rama's voice: 'O Sita! O Lakshmana!' Sita forces Lakshmana to go search — leaving her alone. The trap is set.</p>"
+        data-chars="Ravana,Maricha,Sita,Rama,Lakshmana">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 42–45</span>
+          <span class="episode-marker" aria-hidden="true">II</span>
           <h3 class="episode-title">The Golden Deer of Illusion</h3>
           <p class="episode-text">Maricha becomes a magical golden deer to lure Rama. The cruel stratagem leaves Sita unguarded in the forest.</p>
-          <span class="episode-tag">Deception</span>
+          <span class="episode-category">Deception</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="The Abduction of Sita"
-          data-kanda="Aranya Kanda · Sarga 45–49"
-          data-detail="<p>Ravana, disguised as a wandering ascetic, approaches Sita's hermitage. He speaks beautifully, praising her divine beauty. The moment Sita steps beyond the protective Lakshmana Rekha — the sacred line drawn by Lakshmana — Ravana reveals his true terrible form.</p><p>The great eagle Jatayu tries bravely to stop Ravana, fighting with beak and talon, but Ravana severs his wings. Sita is carried screaming through the sky toward Lanka, scattering flowers and jewels as markers of her path for Rama to find.</p>"
-          data-chars="Ravana,Sita,Jatayu,Lakshmana,Rama">
-          <span class="episode-number">Sarga 45–50</span>
-          <span class="episode-icon">🌩️</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="The Abduction of Sita Devi"
+        data-kanda="Aranya Kanda · Sarga 45–50"
+        data-detail="<p>Ravana, disguised as a wandering ascetic, approaches Sita's hermitage. The moment she steps beyond the protective Lakshmana Rekha, Ravana reveals his true terrible form. The great eagle Jatayu tries bravely to stop Ravana, fighting with beak and talon, but Ravana severs his wings. Sita is carried screaming through the sky toward Lanka, scattering flowers and jewels as markers of her path for Rama to find.</p>"
+        data-chars="Ravana,Sita,Jatayu,Lakshmana,Rama">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 45–50</span>
+          <span class="episode-marker" aria-hidden="true">III</span>
           <h3 class="episode-title">The Abduction of Sita Devi</h3>
           <p class="episode-text">Ravana abducts Sita. The noble eagle Jatayu fights valiantly but falls. The darkest hour of the Ramayana begins.</p>
-          <span class="episode-tag">Crisis</span>
+          <span class="episode-category">Crisis</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="Jatayu's Last Words"
-          data-kanda="Aranya Kanda · Sarga 64–68"
-          data-detail="<p>Rama returns to find the hermitage empty. Wandering the forest in anguish, he comes upon the mortally wounded Jatayu. The great eagle uses his last breath to tell Rama the direction Ravana took Sita — southward, toward Lanka.</p><p>Rama weeps over Jatayu, performing his last rites as a son would for a father, calling him more than a friend — a witness to his dharma and Sita's innocence. Jatayu ascends to Vishnu's abode. Rama and Lakshmana continue south.</p>"
-          data-chars="Jatayu,Rama,Lakshmana,Sita">
-          <span class="episode-number">Sarga 64–68</span>
-          <span class="episode-icon">🦅</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="Jatayu's Sacred Sacrifice"
+        data-kanda="Aranya Kanda · Sarga 64–68"
+        data-detail="<p>Rama finds the mortally wounded Jatayu. The great eagle uses his last breath to tell Rama the direction Ravana took Sita — southward, toward Lanka. Rama weeps over Jatayu, performing his last rites as a son would for a father. Jatayu ascends to Vishnu's abode. Rama and Lakshmana continue south.</p>"
+        data-chars="Jatayu,Rama,Lakshmana,Sita">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 64–68</span>
+          <span class="episode-marker" aria-hidden="true">IV</span>
           <h3 class="episode-title">Jatayu's Sacred Sacrifice</h3>
           <p class="episode-text">Dying Jatayu tells Rama the direction of Sita's abduction. Rama performs the eagle's last rites with the love of a son.</p>
-          <span class="episode-tag">Sacrifice</span>
+          <span class="episode-category">Sacrifice</span>
         </div>
-      </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
+    </div>
 
-      <div class="divider"><span class="divider-symbol">✦</span></div>
-      <p class="kanda-subtitle" style="margin-bottom:1rem;">Key Figures of Aranya Kanda</p>
-      <div class="spotlight-row reveal">
-        <div class="spotlight-card"><span class="spotlight-symbol">👹</span><p class="spotlight-name">Ravana</p><p class="spotlight-role">King of Lanka · The Abductor</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🦅</span><p class="spotlight-name">Jatayu</p><p class="spotlight-role">King of Eagles · Martyr</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🌙</span><p class="spotlight-name">Surpanakha</p><p class="spotlight-role">Ravana's Sister · Catalyst</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🦌</span><p class="spotlight-name">Maricha</p><p class="spotlight-role">Demon · Shape-shifter</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🌺</span><p class="spotlight-name">Sita Devi</p><p class="spotlight-role">The Abducted Queen</p></div>
-      </div>
-    </section>
+    <div class="gold-divider"><span class="gold-divider-symbol">✦</span></div>
+    <p class="spotlight-label">Figures of Aranya Kanda</p>
+    <div class="spotlight-row reveal">
+      <div class="spotlight-card"><span class="spotlight-glyph">Ravana</span><p class="spotlight-name">Ravana</p><p class="spotlight-role">King of Lanka · The Abductor</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Jatayu</span><p class="spotlight-name">Jatayu</p><p class="spotlight-role">King of Eagles · Martyr</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Surpanakha</span><p class="spotlight-name">Surpanakha</p><p class="spotlight-role">Ravana's Sister · Catalyst</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Maricha</span><p class="spotlight-name">Maricha</p><p class="spotlight-role">Demon · Shape-shifter</p></div>
+    </div>
+  </section>
 
-    <!-- ══ KISHKINDHA KANDA ════════════════════════════════════════════ -->
-    <section class="kanda-section reveal" id="kanda-kishkindha" aria-labelledby="kishkindha-title" role="tabpanel" hidden>
-      <div class="kanda-header">
-        <div>
-          <div class="kanda-number">IV</div>
-          <h2 class="kanda-title" id="kishkindha-title">Kishkindha Kanda</h2>
-          <p class="kanda-subtitle">The Book of Kishkindha · 67 Sargas · Alliance of the Vanaras</p>
-          <p class="kanda-intro">In the Rishyamukha forest, a chance meeting changes everything. Rama forges an eternal alliance with the Vanara kingdom — and the greatest devotee in history steps forward.</p>
-        </div>
-        <span class="kanda-badge">Book Four</span>
+  <!-- ══ IV. KISHKINDHA KANDA ══════════════════════════════════════ -->
+  <section class="kanda-section" id="kanda-kishkindha" role="tabpanel" aria-labelledby="kishkindha-h" hidden>
+    <div class="kanda-header reveal">
+      <div>
+        <span class="kanda-numeral" aria-hidden="true">IV</span>
+        <h2 class="kanda-title" id="kishkindha-h">Kishkindha Kanda</h2>
+        <p class="kanda-label">The Book of Kishkindha · 67 Sargas · Alliance of the Vanaras</p>
+        <p class="kanda-intro">In the Rishyamukha forest, Rama forges an eternal alliance with the Vanara kingdom — and the greatest devotee in history steps forward.</p>
       </div>
+      <span class="kanda-badge">Book Four</span>
+    </div>
 
-      <div class="verse-block reveal">
-        <p class="verse-label">Hanuman's First Meeting with Rama</p>
-        <p class="verse-sanskrit">कस्त्वं बाहुबलोपेतः कस्य वा त्वं मनोरमः ।<br>सन्ध्याभ्रमिव सौम्यात्मा प्रभया ते विराजसे ॥</p>
-        <p class="verse-translation">Who are you, endowed with the strength of arms? Whose are you, O beautiful one? You shine like a twilight cloud, O gentle-souled one, with your radiance.</p>
-        <p class="verse-source">Kishkindhakanda · Sarga 3 (Hanuman to Rama)</p>
-      </div>
+    <div class="sacred-summary reveal">
+      <p class="summary-label">Hanuman's First Meeting — Kishkindhakanda Sarga 3</p>
+      <p class="summary-shloka">कस्त्वं बाहुबलोपेतः कस्य वा त्वं मनोरमः ।<br>सन्ध्याभ्रमिव सौम्यात्मा प्रभया ते विराजसे ॥</p>
+      <p class="summary-translation">Who are you, endowed with the strength of arms? Whose are you, O beautiful one? You shine like a twilight cloud, O gentle-souled one, with your radiance.</p>
+      <p class="summary-source">Kishkindhakanda · Sarga 3 (Hanuman to Rama)</p>
+    </div>
 
-      <div class="episodes-grid">
-        <div class="episode-card reveal"
-          data-title="Meeting of Rama and Hanuman"
-          data-kanda="Kishkindha Kanda · Sarga 1–4"
-          data-detail="<p>On the Rishyamukha mountain, the exiled Vanara prince Sugriva watches two strangers approach. Fearing they may be agents of Vali, he sends Hanuman to investigate. Hanuman descends in the form of a Brahmin and addresses Rama in perfect Sanskrit — each word measured, each sentence noble.</p><p>Rama is immediately struck by Hanuman's wisdom and eloquence. He tells Lakshmana: 'One who speaks thus can accomplish any task.' The meeting of Rama and Hanuman — the meeting of the Lord and his greatest devotee — is one of the most sacred moments in the epic.</p>"
-          data-chars="Rama,Hanuman,Lakshmana,Sugriva">
-          <span class="episode-number">Sarga 1–4</span>
-          <span class="episode-icon">🐒</span>
+    <div class="episodes-grid">
+      <article class="episode-card manuscript-card reveal"
+        data-title="Rama Meets Hanuman"
+        data-kanda="Kishkindha Kanda · Sarga 1–4"
+        data-detail="<p>On the Rishyamukha mountain, Sugriva sends Hanuman to investigate two strangers. Hanuman descends in the form of a Brahmin and addresses Rama in perfect Sanskrit — each word measured, each sentence noble.</p><p>Rama is immediately struck by Hanuman's wisdom and eloquence. He tells Lakshmana: 'One who speaks thus can accomplish any task.' The meeting of Rama and Hanuman — Lord and greatest devotee — is one of the most sacred moments in the epic.</p>"
+        data-chars="Rama,Hanuman,Lakshmana,Sugriva">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 1–4</span>
+          <span class="episode-marker" aria-hidden="true">I</span>
           <h3 class="episode-title">Rama Meets Hanuman</h3>
           <p class="episode-text">Hanuman, sent by Sugriva, meets Rama for the first time. The Lord recognises his greatest devotee in the wisest of Vanaras.</p>
-          <span class="episode-tag">Sacred Meeting</span>
+          <span class="episode-category">Sacred Meeting</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="The Killing of Vali"
-          data-kanda="Kishkindha Kanda · Sarga 16–18"
-          data-detail="<p>Sugriva, exiled by his brother Vali, cannot face him in direct combat — Vali possesses a divine boon that gives him half the strength of any opponent. Rama agrees to help Sugriva by striking Vali from hiding. Vali and Sugriva fight; Rama shoots his arrow.</p><p>Vali falls, mortally wounded, and confronts Rama with a sharp question: why shoot from hiding? Rama explains the dharma of kings — Vali had wrongfully taken Sugriva's wife and banished his own brother. As Vali dies, he accepts Rama's judgment and entrusts his son Angada to Sugriva's care.</p>"
-          data-chars="Rama,Vali,Sugriva,Hanuman,Tara,Angada">
-          <span class="episode-number">Sarga 15–18</span>
-          <span class="episode-icon">⚡</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="The Fall of Vali"
+        data-kanda="Kishkindha Kanda · Sarga 15–18"
+        data-detail="<p>Sugriva cannot face Vali in direct combat — Vali's divine boon gives him half the strength of any opponent. Rama agrees to help by striking Vali from hiding. Vali and Sugriva fight; Rama shoots his arrow. Vali falls and confronts Rama: why shoot from hiding? Rama explains the dharma of kings — Vali had wrongfully taken Sugriva's wife and banished his own brother. As Vali dies, he accepts Rama's judgment and entrusts his son Angada to Sugriva's care.</p>"
+        data-chars="Rama,Vali,Sugriva,Hanuman,Tara,Angada">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 15–18</span>
+          <span class="episode-marker" aria-hidden="true">II</span>
           <h3 class="episode-title">The Fall of Vali</h3>
-          <p class="episode-text">Rama slays Vali from hiding — a much-debated act. Vali questions, Rama answers with dharma, and a king accepts his fate.</p>
-          <span class="episode-tag">Justice</span>
+          <p class="episode-text">Rama slays Vali from hiding — a much-debated act of dharma. Vali questions, Rama answers, and a king accepts his fate.</p>
+          <span class="episode-category">Justice</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="Hanuman's Departure Southward"
-          data-kanda="Kishkindha Kanda · Sarga 64–67"
-          data-detail="<p>The Vanara armies are dispatched in all four directions to search for Sita. Only the southern party — led by Angada and including Hanuman — possesses the means to cross the ocean. When all others despair, the great sage Jambavan reminds Hanuman of his own divine power.</p><p>Hanuman had forgotten his godly strength due to a childhood curse. As Jambavan recounts his glory, Hanuman grows to his mighty divine form, roars with the sound of thunder, and leaps from the Mahendra mountain across the ocean toward Lanka. The search has a champion.</p>"
-          data-chars="Hanuman,Jambavan,Angada,Sugriva,Rama">
-          <span class="episode-number">Sarga 64–67</span>
-          <span class="episode-icon">🌊</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="Hanuman Awakens His Power"
+        data-kanda="Kishkindha Kanda · Sarga 64–67"
+        data-detail="<p>When all Vanara search parties despair, the great sage Jambavan reminds Hanuman of his own divine power — forgotten due to a childhood curse. As Jambavan recounts his glory, Hanuman grows to his mighty divine form, roars with the sound of thunder, and leaps from the Mahendra mountain across the ocean toward Lanka. The search has its champion.</p>"
+        data-chars="Hanuman,Jambavan,Angada,Sugriva,Rama">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 64–67</span>
+          <span class="episode-marker" aria-hidden="true">III</span>
           <h3 class="episode-title">Hanuman Awakens His Power</h3>
           <p class="episode-text">Jambavan reminds Hanuman of his divine strength. The Vanara god grows enormous and leaps across the ocean toward Lanka.</p>
-          <span class="episode-tag">Awakening</span>
+          <span class="episode-category">Awakening</span>
         </div>
-      </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
+    </div>
 
-      <div class="divider"><span class="divider-symbol">✦</span></div>
-      <p class="kanda-subtitle" style="margin-bottom:1rem;">Key Figures of Kishkindha Kanda</p>
-      <div class="spotlight-row reveal">
-        <div class="spotlight-card"><span class="spotlight-symbol">🐒</span><p class="spotlight-name">Hanuman</p><p class="spotlight-role">Son of Wind · Rama's Greatest Devotee</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🦁</span><p class="spotlight-name">Sugriva</p><p class="spotlight-role">Vanara King · Rama's Ally</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">⚔️</span><p class="spotlight-name">Vali</p><p class="spotlight-role">Mighty Vanara · Fallen King</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">📿</span><p class="spotlight-name">Jambavan</p><p class="spotlight-role">Ancient Bear King · Wise Counsellor</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🌟</span><p class="spotlight-name">Angada</p><p class="spotlight-role">Vali's Son · Vanara Prince</p></div>
-      </div>
-    </section>
+    <div class="gold-divider"><span class="gold-divider-symbol">✦</span></div>
+    <p class="spotlight-label">Figures of Kishkindha Kanda</p>
+    <div class="spotlight-row reveal">
+      <div class="spotlight-card"><span class="spotlight-glyph">Hanuman</span><p class="spotlight-name">Hanuman</p><p class="spotlight-role">Son of Wind · Rama's Greatest Devotee</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Sugriva</span><p class="spotlight-name">Sugriva</p><p class="spotlight-role">Vanara King · Rama's Ally</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Vali</span><p class="spotlight-name">Vali</p><p class="spotlight-role">Mighty Vanara · Fallen King</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Jambavan</span><p class="spotlight-name">Jambavan</p><p class="spotlight-role">Ancient Bear King · Wise Counsellor</p></div>
+    </div>
+  </section>
 
-    <!-- ══ SUNDARA KANDA ════════════════════════════════════════════════ -->
-    <section class="kanda-section reveal" id="kanda-sundara" aria-labelledby="sundara-title" role="tabpanel" hidden>
-      <div class="kanda-header">
-        <div>
-          <div class="kanda-number">V</div>
-          <h2 class="kanda-title" id="sundara-title">Sundara Kanda</h2>
-          <p class="kanda-subtitle">The Beautiful Book · 68 Sargas · Hanuman in Lanka</p>
-          <p class="kanda-intro">Named 'Beautiful' — for it is the most beloved kanda in tradition. Hanuman's flight to Lanka, his search for Sita, and his blazing return form the emotional and spiritual apex of the Ramayana.</p>
-        </div>
-        <span class="kanda-badge">Book Five</span>
+  <!-- ══ V. SUNDARA KANDA ══════════════════════════════════════════ -->
+  <section class="kanda-section" id="kanda-sundara" role="tabpanel" aria-labelledby="sundara-h" hidden>
+    <div class="kanda-header reveal">
+      <div>
+        <span class="kanda-numeral" aria-hidden="true">V</span>
+        <h2 class="kanda-title" id="sundara-h">Sundara Kanda</h2>
+        <p class="kanda-label">The Beautiful Book · 68 Sargas · Hanuman in Lanka</p>
+        <p class="kanda-intro">Named Beautiful — for it is the most beloved kanda in tradition. Hanuman's flight to Lanka, his search for Sita, and his blazing return form the emotional and spiritual apex of the Ramayana.</p>
       </div>
+      <span class="kanda-badge">Book Five</span>
+    </div>
 
-      <div class="verse-block reveal">
-        <p class="verse-label">Hanuman Finds Sita</p>
-        <p class="verse-sanskrit">सा तं दृष्ट्वा हनुमन्तं सीता परमदुःखिता ।<br>मनसा चिन्तयामास कः श्रेयस्करो मम ॥</p>
-        <p class="verse-translation">Sita, seeing Hanuman, deeply distressed, thought in her mind: Who could bring me greater welfare than this one?</p>
-        <p class="verse-source">Sundarakanda · Sarga 32</p>
-      </div>
+    <div class="sacred-summary reveal">
+      <p class="summary-label">Hanuman Finds Sita — Sundarakanda Sarga 32</p>
+      <p class="summary-shloka">सा तं दृष्ट्वा हनुमन्तं सीता परमदुःखिता ।<br>मनसा चिन्तयामास कः श्रेयस्करो मम ॥</p>
+      <p class="summary-translation">Sita, seeing Hanuman, deeply distressed, thought in her mind: Who could bring me greater welfare than this one?</p>
+      <p class="summary-source">Sundarakanda · Sarga 32</p>
+    </div>
 
-      <div class="episodes-grid">
-        <div class="episode-card reveal"
-          data-title="The Leap Across the Ocean"
-          data-kanda="Sundara Kanda · Sarga 1"
-          data-detail="<p>Hanuman grows to a divine, mountain-sized form. From the peak of Mahendra mountain, surrounded by the thunderous cheers of the Vanara army, he leaps across the vast ocean toward Lanka. The sea parts slightly at his passing, whales and sea creatures pause in awe.</p><p>He overcomes the demoness Surasa who tests him, and defeats the hideous Simhika who grabs his shadow. Finally, he shrinks to a small form and lands secretly in Lanka at night, beginning his search.</p>"
-          data-chars="Hanuman,Surasa,Simhika,Mainaka">
-          <span class="episode-number">Sarga 1–4</span>
-          <span class="episode-icon">🌏</span>
+    <div class="episodes-grid">
+      <article class="episode-card manuscript-card reveal"
+        data-title="The Great Leap"
+        data-kanda="Sundara Kanda · Sarga 1–4"
+        data-detail="<p>Hanuman grows to a divine, mountain-sized form. From the peak of Mahendra mountain, surrounded by the thunderous cheers of the Vanara army, he leaps across the vast ocean toward Lanka. He overcomes the demoness Surasa who tests him, defeats Simhika who grabs his shadow, then shrinks to a small form and lands secretly in Lanka at night.</p>"
+        data-chars="Hanuman,Surasa,Simhika,Mainaka">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 1–4</span>
+          <span class="episode-marker" aria-hidden="true">I</span>
           <h3 class="episode-title">The Great Leap</h3>
-          <p class="episode-text">Hanuman leaps across a hundred yojanas of ocean. A journey that marks the single greatest individual feat of devotion in all literature.</p>
-          <span class="episode-tag">Devotion</span>
+          <p class="episode-text">Hanuman leaps across one hundred yojanas of ocean — the single greatest individual feat of devotion in all of literature.</p>
+          <span class="episode-category">Devotion</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="Sita in the Ashoka Grove"
-          data-kanda="Sundara Kanda · Sarga 13–16"
-          data-detail="<p>Hanuman finds Sita in the Ashoka Vatika — the garden of ashoka trees — emaciated, pale with grief, surrounded by Ravana's rakshasi guards, refusing all food since her abduction. Ravana approaches, threatening and cajoling, but Sita holds a blade of grass between herself and him, symbolising the inviolable wall of her chastity and devotion to Rama.</p><p>Hanuman watches from a tree branch, heart aching at her condition, waiting for the right moment to reveal himself.</p>"
-          data-chars="Sita,Ravana,Hanuman,Trijata">
-          <span class="episode-number">Sarga 13–22</span>
-          <span class="episode-icon">🌳</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="Sita in the Ashoka Vatika"
+        data-kanda="Sundara Kanda · Sarga 13–22"
+        data-detail="<p>Hanuman finds Sita in the Ashoka Vatika — the garden of ashoka trees — emaciated, pale with grief, surrounded by Ravana's rakshasi guards. Ravana approaches, threatening and cajoling, but Sita holds a blade of grass between herself and him — the inviolable wall of her chastity and devotion to Rama. Hanuman watches from a tree branch, waiting for the right moment.</p>"
+        data-chars="Sita,Ravana,Hanuman,Trijata">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 13–22</span>
+          <span class="episode-marker" aria-hidden="true">II</span>
           <h3 class="episode-title">Sita in the Ashoka Vatika</h3>
           <p class="episode-text">Hanuman finds Sita — sorrowful but unbroken, holding a blade of grass between herself and Ravana's demands.</p>
-          <span class="episode-tag">Fortitude</span>
+          <span class="episode-category">Fortitude</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="Hanuman Gives Rama's Ring"
-          data-kanda="Sundara Kanda · Sarga 31–35"
-          data-detail="<p>Hanuman drops down from the tree and speaks to Sita in a soft voice — identifying himself as Rama's messenger. Sita is suspicious at first: how can a Vanara speak Sanskrit so beautifully? But Hanuman presents Rama's signet ring, and Sita weeps with recognition and relief.</p><p>Hanuman conveys Rama's message of love and imminent rescue. He offers to carry Sita back across the ocean himself, but she refuses — it would not be proper for her to touch any man but Rama. She gives him her chudamani — the hair jewel — as proof of her meeting for Rama.</p>"
-          data-chars="Hanuman,Sita,Rama">
-          <span class="episode-number">Sarga 30–36</span>
-          <span class="episode-icon">💍</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="The Ring and the Jewel"
+        data-kanda="Sundara Kanda · Sarga 30–36"
+        data-detail="<p>Hanuman drops from the tree and speaks to Sita in soft Sanskrit, identifying himself as Rama's messenger. Sita is suspicious — how can a Vanara speak Sanskrit so beautifully? But Hanuman presents Rama's signet ring, and Sita weeps with recognition.</p><p>He conveys Rama's message of love and imminent rescue. He offers to carry Sita back himself, but she refuses: it would not be proper to touch any man but Rama. She gives him her chudamani — the hair jewel — as proof of their meeting.</p>"
+        data-chars="Hanuman,Sita,Rama">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 30–36</span>
+          <span class="episode-marker" aria-hidden="true">III</span>
           <h3 class="episode-title">The Ring and the Jewel</h3>
-          <p class="episode-text">Hanuman gives Sita Rama's ring. Sita gives him her chudamani. These two tokens become the proof of faith across an ocean.</p>
-          <span class="episode-tag">Messenger</span>
+          <p class="episode-text">Hanuman gives Sita Rama's ring. Sita gives him her chudamani. Two tokens become the proof of faith across an ocean.</p>
+          <span class="episode-category">Messenger</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="Lanka Burns"
-          data-kanda="Sundara Kanda · Sarga 52–54"
-          data-detail="<p>Captured by Ravana's son Indrajit and brought before Ravana, Hanuman boldly delivers Rama's ultimatum: release Sita or face destruction. Ravana orders Hanuman's tail set on fire as punishment. The Vanaras use the fire itself — wrapping his tail in cloth and setting it ablaze — but Hanuman uses this to his advantage.</p><p>Growing to enormous size, Hanuman leaps from building to building across Lanka, setting the golden city ablaze with his burning tail, before cooling it in the sea and returning to Rama with Sita's message.</p>"
-          data-chars="Hanuman,Ravana,Indrajit,Vibhishana">
-          <span class="episode-number">Sarga 50–55</span>
-          <span class="episode-icon">🔥</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="Lanka Ablaze"
+        data-kanda="Sundara Kanda · Sarga 50–55"
+        data-detail="<p>Captured by Ravana's son Indrajit, Hanuman is brought before Ravana. He boldly delivers Rama's ultimatum: release Sita or face destruction. Ravana orders his tail set on fire as punishment. Growing to enormous size, Hanuman leaps from building to building across Lanka, setting the golden city ablaze with his burning tail — a message of divine fury from Rama — before cooling it in the sea and returning to Rama with Sita's message.</p>"
+        data-chars="Hanuman,Ravana,Indrajit,Vibhishana">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 50–55</span>
+          <span class="episode-marker" aria-hidden="true">IV</span>
           <h3 class="episode-title">Lanka Ablaze</h3>
           <p class="episode-text">Hanuman's burning tail becomes a torch. He sets the golden city of Lanka on fire — a message of divine fury from Rama.</p>
-          <span class="episode-tag">Fiery Warning</span>
+          <span class="episode-category">Fiery Warning</span>
         </div>
-      </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
+    </div>
 
-      <div class="divider"><span class="divider-symbol">✦</span></div>
-      <p class="kanda-subtitle" style="margin-bottom:1rem;">Key Figures of Sundara Kanda</p>
-      <div class="spotlight-row reveal">
-        <div class="spotlight-card"><span class="spotlight-symbol">🐒</span><p class="spotlight-name">Hanuman</p><p class="spotlight-role">Parama Bhakta · Divine Messenger</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🌺</span><p class="spotlight-name">Sita Devi</p><p class="spotlight-role">The Captive Queen · Unbroken</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🌙</span><p class="spotlight-name">Trijata</p><p class="spotlight-role">Kind Rakshasi · Sita's Protector</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">👹</span><p class="spotlight-name">Ravana</p><p class="spotlight-role">The Captor · Doomed King</p></div>
-      </div>
-    </section>
+    <div class="gold-divider"><span class="gold-divider-symbol">✦</span></div>
+    <p class="spotlight-label">Figures of Sundara Kanda</p>
+    <div class="spotlight-row reveal">
+      <div class="spotlight-card"><span class="spotlight-glyph">Hanuman</span><p class="spotlight-name">Hanuman</p><p class="spotlight-role">Parama Bhakta · Divine Messenger</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Sita Devi</span><p class="spotlight-name">Sita Devi</p><p class="spotlight-role">The Captive Queen · Unbroken</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Trijata</span><p class="spotlight-name">Trijata</p><p class="spotlight-role">Kind Rakshasi · Sita's Protector</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Ravana</span><p class="spotlight-name">Ravana</p><p class="spotlight-role">The Captor · Doomed King</p></div>
+    </div>
+  </section>
 
-    <!-- ══ YUDDHA KANDA ═════════════════════════════════════════════════ -->
-    <section class="kanda-section reveal" id="kanda-yuddha" aria-labelledby="yuddha-title" role="tabpanel" hidden>
-      <div class="kanda-header">
-        <div>
-          <div class="kanda-number">VI</div>
-          <h2 class="kanda-title" id="yuddha-title">Yuddha Kanda</h2>
-          <p class="kanda-subtitle">The Book of War · 128 Sargas · The Battle of Lanka</p>
-          <p class="kanda-intro">The longest kanda — the great war itself. Dharma meets adharma on the beaches and ramparts of Lanka. Gods descend to witness. Heaven holds its breath as Rama and Ravana finally face each other.</p>
-        </div>
-        <span class="kanda-badge">Book Six</span>
+  <!-- ══ VI. YUDDHA KANDA ══════════════════════════════════════════ -->
+  <section class="kanda-section" id="kanda-yuddha" role="tabpanel" aria-labelledby="yuddha-h" hidden>
+    <div class="kanda-header reveal">
+      <div>
+        <span class="kanda-numeral" aria-hidden="true">VI</span>
+        <h2 class="kanda-title" id="yuddha-h">Yuddha Kanda</h2>
+        <p class="kanda-label">The Book of War · 128 Sargas · The Battle of Lanka</p>
+        <p class="kanda-intro">The longest kanda — the great war itself. Dharma meets adharma on the beaches and ramparts of Lanka. Gods descend to witness. Heaven holds its breath.</p>
       </div>
+      <span class="kanda-badge">Book Six</span>
+    </div>
 
-      <div class="verse-block reveal">
-        <p class="verse-label">The Death of Ravana</p>
-        <p class="verse-sanskrit">स हत्वा राक्षसान् घोरान् सुग्रीवेण समागतः ।<br>प्रहृष्टो जग्मतुस्तत्र यत्र रामो व्यवस्थितः ॥</p>
-        <p class="verse-translation">Having slain the terrible Rakshasas and joined with Sugriva, they went joyfully to where Rama stood steady and victorious.</p>
-        <p class="verse-source">Yuddhakanda · Sarga 108</p>
-      </div>
+    <div class="sacred-summary reveal">
+      <p class="summary-label">Victory — Yuddhakanda Sarga 108</p>
+      <p class="summary-shloka">स हत्वा राक्षसान् घोरान् सुग्रीवेण समागतः ।<br>प्रहृष्टो जग्मतुस्तत्र यत्र रामो व्यवस्थितः ॥</p>
+      <p class="summary-translation">Having slain the terrible Rakshasas and joined with Sugriva, they went joyfully to where Rama stood steady and victorious.</p>
+      <p class="summary-source">Yuddhakanda · Sarga 108</p>
+    </div>
 
-      <div class="episodes-grid">
-        <div class="episode-card reveal"
-          data-title="Building the Rama Setu"
-          data-kanda="Yuddha Kanda · Sarga 22"
-          data-detail="<p>Rama stands at the southern shore and prays to the Ocean — Samudra — asking passage. When the ocean does not appear after three days, Rama raises his bow in fury and threatens to dry up the sea with the Brahmastra. The Ocean god manifests and suggests: call the great Vanara architect Nala, whose touch makes rocks float by a divine boon.</p><p>The Vanaras begin construction of the floating bridge — the Rama Setu — across one hundred yojanas of ocean. Every stone and rock marked with Rama's name floats miraculously. The bridge is completed in five days. The armies of dharma march toward Lanka.</p>"
-          data-chars="Rama,Nala,Samudra,Sugriva,Hanuman">
-          <span class="episode-number">Sarga 19–24</span>
-          <span class="episode-icon">🌉</span>
+    <div class="episodes-grid">
+      <article class="episode-card manuscript-card reveal"
+        data-title="The Building of Rama Setu"
+        data-kanda="Yuddha Kanda · Sarga 19–24"
+        data-detail="<p>Rama prays to the Ocean for three days. When Samudra does not appear, Rama raises his bow in fury and threatens to dry up the sea with the Brahmastra. The Ocean god manifests and suggests: call Nala, whose touch makes rocks float by a divine boon. The Vanaras build the floating bridge — every stone and rock marked with Rama's name floats miraculously. The bridge is completed in five days.</p>"
+        data-chars="Rama,Nala,Samudra,Sugriva,Hanuman">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 19–24</span>
+          <span class="episode-marker" aria-hidden="true">I</span>
           <h3 class="episode-title">The Building of Rama Setu</h3>
           <p class="episode-text">Rocks inscribed with Rama's name float upon the ocean. The Vanara army builds a miraculous bridge across one hundred yojanas of sea.</p>
-          <span class="episode-tag">Divine Bridge</span>
+          <span class="episode-category">Divine Bridge</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="Vibhishana Surrenders to Rama"
-          data-kanda="Yuddha Kanda · Sarga 17–19"
-          data-detail="<p>Vibhishana, Ravana's righteous younger brother, had repeatedly counselled Ravana to return Sita and make peace with Rama. Ravana, blinded by pride, banishes him. Vibhishana flies to Rama's camp, seeking refuge.</p><p>Some Vanaras are suspicious — a demon offering himself as ally? But Hanuman vouches for him, and Rama accepts Vibhishana unconditionally: 'Whoever comes to me seeking refuge, I shall protect.' Rama crowns Vibhishana king of Lanka even before the war begins — an act of supreme faith in dharma's victory.</p>"
-          data-chars="Vibhishana,Rama,Ravana,Hanuman,Sugriva">
-          <span class="episode-number">Sarga 17–19</span>
-          <span class="episode-icon">🕊️</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="Vibhishana Takes Refuge"
+        data-kanda="Yuddha Kanda · Sarga 17–19"
+        data-detail="<p>Vibhishana, Ravana's righteous younger brother, had repeatedly counselled Ravana to return Sita. Ravana banishes him. Vibhishana flies to Rama's camp seeking refuge. Some Vanaras are suspicious, but Hanuman vouches for him. Rama accepts Vibhishana unconditionally: 'Whoever comes to me seeking refuge, I shall protect.' Rama crowns him king of Lanka even before the war begins — an act of supreme faith in dharma's victory.</p>"
+        data-chars="Vibhishana,Rama,Ravana,Hanuman,Sugriva">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 17–19</span>
+          <span class="episode-marker" aria-hidden="true">II</span>
           <h3 class="episode-title">Vibhishana Takes Refuge</h3>
-          <p class="episode-text">Ravana's righteous brother surrenders to Rama, who accepts him and crowns him king of Lanka — before the first battle is fought.</p>
-          <span class="episode-tag">Sharanagati</span>
+          <p class="episode-text">Ravana's righteous brother surrenders to Rama, who accepts him and crowns him king of Lanka before the first battle is fought.</p>
+          <span class="episode-category">Sharanagati</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="Lakshmana Struck by Shakti"
-          data-kanda="Yuddha Kanda · Sarga 89–90"
-          data-detail="<p>In the great battle, Ravana's son Indrajit — the conqueror of Indra — strikes Lakshmana with the Shakti weapon, gifted by Brahma. Lakshmana falls, unconscious and near death. The Vanara armies are devastated. Even Rama weeps for his fallen brother.</p><p>Jambavan directs Hanuman to the Dronagiri mountain in the Himalayas to fetch the Sanjeevani herb before dawn. Hanuman, unable to identify the herb, uproots the entire mountain and carries it to Lanka. The divine physician Sushena identifies the herb, Lakshmana awakens, and the battle resumes.</p>"
-          data-chars="Lakshmana,Indrajit,Hanuman,Rama,Jambavan,Sushena">
-          <span class="episode-number">Sarga 88–91</span>
-          <span class="episode-icon">🌿</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="Hanuman and the Sanjeevani"
+        data-kanda="Yuddha Kanda · Sarga 88–91"
+        data-detail="<p>Indrajit strikes Lakshmana with the Shakti weapon, gifted by Brahma. Lakshmana falls, near death. Even Rama weeps. Jambavan directs Hanuman to the Dronagiri mountain in the Himalayas to fetch the Sanjeevani herb before dawn. Unable to identify the specific herb, Hanuman uproots the entire mountain and carries it to Lanka. The divine physician Sushena identifies the herb. Lakshmana awakens. The battle resumes.</p>"
+        data-chars="Lakshmana,Indrajit,Hanuman,Rama,Jambavan,Sushena">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 88–91</span>
+          <span class="episode-marker" aria-hidden="true">III</span>
           <h3 class="episode-title">Hanuman and the Sanjeevani</h3>
-          <p class="episode-text">Lakshmana falls to Indrajit's divine weapon. Hanuman carries an entire mountain of life-giving herbs to save him.</p>
-          <span class="episode-tag">Sacrifice</span>
+          <p class="episode-text">Lakshmana falls to Indrajit's divine weapon. Hanuman carries an entire mountain of life-giving herbs to save him before dawn.</p>
+          <span class="episode-category">Sacrifice</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="The Death of Ravana"
-          data-kanda="Yuddha Kanda · Sarga 108–110"
-          data-detail="<p>The final battle. Ravana and Rama face each other directly. Rama cuts off Ravana's heads — but they regenerate. The sage Agastya appears and reveals the secret: Ravana's immortality lies in a pot of nectar in his navel. Rama must strike there with the Brahmastra, the weapon created by Lord Brahma himself.</p><p>Rama chants the mantra, loads the Brahmastra — with wind in its wings, fire in its tip, the weight of Meru and Mandara mountains in its body — and releases it. The arrow strikes true. Ravana falls. The adharma that has oppressed three worlds for aeons is ended. Heaven rains flowers.</p>"
-          data-chars="Rama,Ravana,Agastya,Lakshmana,Vibhishana,Hanuman">
-          <span class="episode-number">Sarga 107–111</span>
-          <span class="episode-icon">⚡</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="The Fall of Ravana"
+        data-kanda="Yuddha Kanda · Sarga 107–111"
+        data-detail="<p>Rama cuts off Ravana's heads — but they regenerate. The sage Agastya reveals the secret: Ravana's immortality lies in a pot of nectar in his navel. Rama loads the Brahmastra — with wind in its wings, fire in its tip, the weight of Meru and Mandara mountains in its body — and releases it. The arrow strikes true. Ravana falls. The adharma that has oppressed three worlds for aeons is ended. Heaven rains flowers.</p>"
+        data-chars="Rama,Ravana,Agastya,Lakshmana,Vibhishana,Hanuman">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 107–111</span>
+          <span class="episode-marker" aria-hidden="true">IV</span>
           <h3 class="episode-title">The Fall of Ravana</h3>
           <p class="episode-text">Rama's Brahmastra pierces Ravana's navel — the source of his immortality. The demon king falls. Dharma is restored. Heaven rejoices.</p>
-          <span class="episode-tag">Victory of Dharma</span>
+          <span class="episode-category">Victory of Dharma</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="Sita's Agni Pariksha"
-          data-kanda="Yuddha Kanda · Sarga 116–118"
-          data-detail="<p>After the victory, Sita is brought to Rama. Rama speaks harshly — citing the need to demonstrate to the world that Sita's honour is beyond reproach. Sita, grief-stricken at being doubted, enters the funeral pyre of her own will. The fire god Agni himself rises carrying Sita — untouched, unscorched — declaring her purity to the assembled worlds.</p><p>Dasharatha appears from heaven and blesses his son. The divine ordeal is complete. Rama and Sita are reunited in divine embrace, their separation ended, their dharma proved to the three worlds.</p>"
-          data-chars="Sita,Rama,Agni,Dasharatha,Hanuman,Vibhishana">
-          <span class="episode-number">Sarga 115–118</span>
-          <span class="episode-icon">🔥</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="Sita's Agni Pariksha"
+        data-kanda="Yuddha Kanda · Sarga 115–118"
+        data-detail="<p>After the victory, Sita is brought to Rama. Citing the need to demonstrate to the world that Sita's honour is beyond reproach, Rama speaks harshly. Sita, grief-stricken at being doubted, enters the funeral pyre of her own will. The fire god Agni himself rises carrying Sita — untouched, unscorched — declaring her purity to the assembled worlds. Dasharatha appears from heaven and blesses his son. Rama and Sita are reunited.</p>"
+        data-chars="Sita,Rama,Agni,Dasharatha,Hanuman,Vibhishana">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 115–118</span>
+          <span class="episode-marker" aria-hidden="true">V</span>
           <h3 class="episode-title">Sita's Agni Pariksha</h3>
           <p class="episode-text">Sita enters the sacred fire to prove her purity. Agni himself rises bearing her — untouched — before all three worlds.</p>
-          <span class="episode-tag">Sacred Trial</span>
+          <span class="episode-category">Sacred Trial</span>
         </div>
-      </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
+    </div>
 
-      <div class="divider"><span class="divider-symbol">✦</span></div>
-      <p class="kanda-subtitle" style="margin-bottom:1rem;">Key Figures of Yuddha Kanda</p>
-      <div class="spotlight-row reveal">
-        <div class="spotlight-card"><span class="spotlight-symbol">👑</span><p class="spotlight-name">Sri Rama</p><p class="spotlight-role">The Victorious King · Dharma Incarnate</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">👹</span><p class="spotlight-name">Ravana</p><p class="spotlight-role">The Fallen Titan · Ten-Headed King</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🌙</span><p class="spotlight-name">Indrajit</p><p class="spotlight-role">Conqueror of Indra · Ravana's Son</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🕊️</span><p class="spotlight-name">Vibhishana</p><p class="spotlight-role">Righteous Rakshasa · Lanka's King</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🌺</span><p class="spotlight-name">Sita Devi</p><p class="spotlight-role">The Rescued Queen · Proven Pure</p></div>
-      </div>
-    </section>
+    <div class="gold-divider"><span class="gold-divider-symbol">✦</span></div>
+    <p class="spotlight-label">Figures of Yuddha Kanda</p>
+    <div class="spotlight-row reveal">
+      <div class="spotlight-card"><span class="spotlight-glyph">Sri Rama</span><p class="spotlight-name">Sri Rama</p><p class="spotlight-role">The Victorious King · Dharma Incarnate</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Ravana</span><p class="spotlight-name">Ravana</p><p class="spotlight-role">The Fallen Titan · Ten-Headed King</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Indrajit</span><p class="spotlight-name">Indrajit</p><p class="spotlight-role">Conqueror of Indra · Ravana's Son</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Vibhishana</span><p class="spotlight-name">Vibhishana</p><p class="spotlight-role">Righteous Rakshasa · Lanka's King</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Sita Devi</span><p class="spotlight-name">Sita Devi</p><p class="spotlight-role">The Rescued Queen · Proven Pure</p></div>
+    </div>
+  </section>
 
-    <!-- ══ UTTARA KANDA ═════════════════════════════════════════════════ -->
-    <section class="kanda-section reveal" id="kanda-uttara" aria-labelledby="uttara-title" role="tabpanel" hidden>
-      <div class="kanda-header">
-        <div>
-          <div class="kanda-number">VII</div>
-          <h2 class="kanda-title" id="uttara-title">Uttara Kanda</h2>
-          <p class="kanda-subtitle">The Final Book · 111 Sargas · Rama's Reign & Return</p>
-          <p class="kanda-intro">The story continues beyond the war. Rama's rule — the Rama Rajya — becomes the ideal of governance. But dharma's burden is never lifted from the righteous. The final chapter carries the deepest sorrow, and the most transcendent ending.</p>
-        </div>
-        <span class="kanda-badge">Book Seven</span>
+  <!-- ══ VII. UTTARA KANDA ═════════════════════════════════════════ -->
+  <section class="kanda-section" id="kanda-uttara" role="tabpanel" aria-labelledby="uttara-h" hidden>
+    <div class="kanda-header reveal">
+      <div>
+        <span class="kanda-numeral" aria-hidden="true">VII</span>
+        <h2 class="kanda-title" id="uttara-h">Uttara Kanda</h2>
+        <p class="kanda-label">The Final Book · 111 Sargas · Rama's Reign and Return</p>
+        <p class="kanda-intro">Rama's rule becomes the ideal of all governance. But dharma's burden is never lifted from the righteous. The final chapter carries the deepest sorrow — and the most transcendent ending.</p>
       </div>
+      <span class="kanda-badge">Book Seven</span>
+    </div>
 
-      <div class="verse-block reveal">
-        <p class="verse-label">Rama Rajya — The Ideal Kingdom</p>
-        <p class="verse-sanskrit">नित्यपुष्पा नित्यफला नित्यच्छाया सुशीतला ।<br>वाताः सुखस्पर्शा वान्ति पुष्पेभ्यो मधुगन्धिनः ॥</p>
-        <p class="verse-translation">Trees forever in flower, forever bearing fruit, always shaded and cool. Winds blow gentle and fragrant with the sweetness of flowers.</p>
-        <p class="verse-source">Uttarakanda · Sarga 42 (Description of Rama Rajya)</p>
-      </div>
+    <div class="sacred-summary reveal">
+      <p class="summary-label">Rama Rajya — Uttarakanda Sarga 42</p>
+      <p class="summary-shloka">नित्यपुष्पा नित्यफला नित्यच्छाया सुशीतला ।<br>वाताः सुखस्पर्शा वान्ति पुष्पेभ्यो मधुगन्धिनः ॥</p>
+      <p class="summary-translation">Trees forever in flower, forever bearing fruit, always shaded and cool. Winds blow gentle and fragrant with the sweetness of flowers.</p>
+      <p class="summary-source">Uttarakanda · Sarga 42 (Description of Rama Rajya)</p>
+    </div>
 
-      <div class="episodes-grid">
-        <div class="episode-card reveal"
-          data-title="Rama Rajya — The Golden Age"
-          data-kanda="Uttara Kanda · Sarga 40–43"
-          data-detail="<p>Under Rama's rule, Ayodhya enters its golden age — Rama Rajya, the ideal of all governance. There is no disease, no poverty, no untimely death. People do not grieve. Nature itself reflects the righteousness of the king: rains fall on time, trees yield fruit abundantly, the earth is never drought-stricken.</p><p>People debate in the streets about dharma, the arts flourish, and every citizen feels personally known by their king. This vision of the perfectly governed, perfectly just kingdom became the enduring political ideal of Indian civilisation for millennia.</p>"
-          data-chars="Rama,Sita,Lakshmana,Bharata,Shatrughna,Hanuman">
-          <span class="episode-number">Sarga 40–43</span>
-          <span class="episode-icon">🌅</span>
+    <div class="episodes-grid">
+      <article class="episode-card manuscript-card reveal"
+        data-title="Rama Rajya — The Ideal Kingdom"
+        data-kanda="Uttara Kanda · Sarga 40–43"
+        data-detail="<p>Under Rama's rule, Ayodhya enters its golden age. There is no disease, no poverty, no untimely death. People do not grieve. Nature itself reflects the righteousness of the king: rains fall on time, trees yield fruit abundantly. People debate dharma in the streets, the arts flourish, and every citizen feels personally known by their king. This vision of the perfectly governed kingdom became the enduring political ideal of Indian civilisation for millennia.</p>"
+        data-chars="Rama,Sita,Lakshmana,Bharata,Shatrughna,Hanuman">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 40–43</span>
+          <span class="episode-marker" aria-hidden="true">I</span>
           <h3 class="episode-title">Rama Rajya — The Ideal Kingdom</h3>
           <p class="episode-text">Under Rama's just rule, Ayodhya becomes paradise on earth. No disease, no injustice, no sorrow — the eternal vision of righteous governance.</p>
-          <span class="episode-tag">Golden Age</span>
+          <span class="episode-category">Golden Age</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="Sita's Second Exile"
-          data-kanda="Uttara Kanda · Sarga 45–46"
-          data-detail="<p>A washerwoman's comment — questioning Sita's purity after her time in Lanka — reaches Rama's ears through his spies. Rama, bound by his duty as a king to uphold the faith of his subjects, makes the most agonising decision of his life: Sita, now pregnant, must be exiled.</p><p>Lakshmana is ordered to leave Sita at Valmiki's ashram in the forest. He cannot bring himself to speak the command, and weeps as he leaves her there — alone, abandoned by the kingdom, carrying Rama's unborn children. It is the Ramayana's most devastating moment.</p>"
-          data-chars="Rama,Sita,Lakshmana,Valmiki">
-          <span class="episode-number">Sarga 44–46</span>
-          <span class="episode-icon">🌑</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="Sita's Exile"
+        data-kanda="Uttara Kanda · Sarga 44–46"
+        data-detail="<p>A washerwoman's comment questioning Sita's purity after her time in Lanka reaches Rama's ears. Rama, bound by his duty as a king to uphold the faith of his subjects, makes the most agonising decision of his life: Sita, now pregnant, must be exiled. Lakshmana is ordered to leave her at Valmiki's ashram. He cannot speak the command and weeps as he leaves her there — alone, carrying Rama's unborn children.</p>"
+        data-chars="Rama,Sita,Lakshmana,Valmiki">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 44–46</span>
+          <span class="episode-marker" aria-hidden="true">II</span>
           <h3 class="episode-title">Sita's Exile</h3>
           <p class="episode-text">Rama exiles the pregnant Sita to uphold his duty as king. It is the most heartbreaking act of dharma in the entire epic.</p>
-          <span class="episode-tag">Tragic Duty</span>
+          <span class="episode-category">Tragic Duty</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="Lava and Kusha Sing the Ramayana"
-          data-kanda="Uttara Kanda · Sarga 94–96"
-          data-detail="<p>Sita, in Valmiki's ashram, gives birth to twin sons — Lava and Kusha. They grow up learning the entire Ramayana from Valmiki himself, who had composed it as the first kavya, the first great poem. The twins sing it with perfect memory and divine beauty.</p><p>When Rama performs the Ashwamedha Yajna and the twins present themselves to sing the Ramayana at the court, Rama is overcome — recognising their faces as mirrors of his own, and their mother's grace in every movement. He asks Sita to return and prove her purity again so he can receive her back.</p>"
-          data-chars="Lava,Kusha,Sita,Rama,Valmiki">
-          <span class="episode-number">Sarga 93–96</span>
-          <span class="episode-icon">🎵</span>
-          <h3 class="episode-title">Lava & Kusha Sing the Ramayana</h3>
-          <p class="episode-text">Valmiki's students sing the entire Ramayana at Rama's court. Rama does not know the singers are his own sons.</p>
-          <span class="episode-tag">Reunion</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="Lava and Kusha Sing the Ramayana"
+        data-kanda="Uttara Kanda · Sarga 93–96"
+        data-detail="<p>Sita gives birth to twin sons — Lava and Kusha — who grow up learning the entire Ramayana from Valmiki. When Rama performs the Ashwamedha Yajna, the twins present themselves to sing the Ramayana at court. Rama is overcome — recognising his own face in theirs, and their mother's grace in every movement. He asks Sita to return and prove her purity again so he can receive her back.</p>"
+        data-chars="Lava,Kusha,Sita,Rama,Valmiki">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 93–96</span>
+          <span class="episode-marker" aria-hidden="true">III</span>
+          <h3 class="episode-title">Lava and Kusha Sing the Ramayana</h3>
+          <p class="episode-text">Valmiki's students sing the entire Ramayana at Rama's court. Rama does not yet know the singers are his own sons.</p>
+          <span class="episode-category">Reunion</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="Sita Returns to the Earth"
-          data-kanda="Uttara Kanda · Sarga 97"
-          data-detail="<p>Rama asks Sita to take a public oath of purity before the assembled court and the gods. Sita, who has suffered enough, makes a different choice. She calls upon her mother the Earth: if she has never sinned against Rama in thought, word, or deed, let the Earth open and receive her.</p><p>The earth trembles. The divine Earth goddess Bhumi Devi rises on a throne of flowers and takes Sita — her daughter — back into her embrace. The earth closes. Sita is gone. Rama stands alone, and the sky rains flowers on a grief too vast for words.</p>"
-          data-chars="Sita,Rama,Bhumi Devi,Lava,Kusha,Valmiki">
-          <span class="episode-number">Sarga 97</span>
-          <span class="episode-icon">🌍</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="Sita Returns to the Earth"
+        data-kanda="Uttara Kanda · Sarga 97"
+        data-detail="<p>Rama asks Sita to take a public oath of purity before the assembled court and the gods. Sita, who has suffered enough, makes a different choice. She calls upon her mother the Earth: if she has never sinned against Rama in thought, word, or deed, let the Earth open and receive her.</p><p>The earth trembles. The divine Earth goddess Bhumi Devi rises on a throne of flowers and takes Sita — her daughter — back into her embrace. The earth closes. Sita is gone. Rama stands alone.</p>"
+        data-chars="Sita,Rama,Bhumi Devi,Lava,Kusha,Valmiki">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 97</span>
+          <span class="episode-marker" aria-hidden="true">IV</span>
           <h3 class="episode-title">Sita Returns to the Earth</h3>
           <p class="episode-text">Sita calls upon her mother the Earth. The ground opens in flowers. She descends — and is gone. The most transcendent farewell in all literature.</p>
-          <span class="episode-tag">Transcendence</span>
+          <span class="episode-category">Transcendence</span>
         </div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
 
-        <div class="episode-card reveal"
-          data-title="Rama's Jala Samadhi"
-          data-kanda="Uttara Kanda · Sarga 108–111"
-          data-detail="<p>After years ruling Ayodhya alone, Rama receives Kala — Time itself — in the form of a sage, who tells him his purpose on earth is complete. Death has been waiting, but dares not enter in Lakshmana's presence. Through a chain of events, Lakshmana is forced to give up his body in the Sarayu river.</p><p>Rama, with Bharata, Shatrughna, the Vanaras, and the citizens of Ayodhya, walks into the sacred Sarayu river. As he descends, Lord Brahma and all the gods appear in the sky. Vishnu himself welcomes Rama home — the avatar's purpose fulfilled. The divine prince of Ayodhya becomes once more the eternal Narayana.</p>"
-          data-chars="Rama,Lakshmana,Bharata,Shatrughna,Brahma,Hanuman">
-          <span class="episode-number">Sarga 108–111</span>
-          <span class="episode-icon">🌊</span>
+      <article class="episode-card manuscript-card reveal"
+        data-title="Rama's Divine Return"
+        data-kanda="Uttara Kanda · Sarga 108–111"
+        data-detail="<p>After years ruling Ayodhya alone, Rama receives Kala — Time itself — in the form of a sage, who tells him his purpose on earth is complete. Through a chain of events, Lakshmana gives up his body in the Sarayu river. Rama, with Bharata, Shatrughna, the Vanaras, and the citizens of Ayodhya, walks into the sacred Sarayu river. Lord Brahma and all the gods appear in the sky. Vishnu himself welcomes Rama home — the avatar's purpose fulfilled.</p>"
+        data-chars="Rama,Lakshmana,Bharata,Shatrughna,Brahma,Hanuman">
+        <div class="card-inner">
+          <span class="episode-sarga">Sarga 108–111</span>
+          <span class="episode-marker" aria-hidden="true">V</span>
           <h3 class="episode-title">Rama's Divine Return</h3>
           <p class="episode-text">Rama walks into the Sarayu river. The gods descend. The avatar completes his purpose and returns to his eternal form as Vishnu.</p>
-          <span class="episode-tag">The Return</span>
+          <span class="episode-category">The Return</span>
         </div>
-      </div>
-
-      <div class="divider"><span class="divider-symbol">✦</span></div>
-      <p class="kanda-subtitle" style="margin-bottom:1rem;">Key Figures of Uttara Kanda</p>
-      <div class="spotlight-row reveal">
-        <div class="spotlight-card"><span class="spotlight-symbol">👑</span><p class="spotlight-name">Sri Rama</p><p class="spotlight-role">The Perfect King · Vishnu's Avatar</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🌍</span><p class="spotlight-name">Sita Devi</p><p class="spotlight-role">Daughter of Earth · Returned</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🌟</span><p class="spotlight-name">Lava & Kusha</p><p class="spotlight-role">Twin Princes · Singers of the Epic</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">📿</span><p class="spotlight-name">Valmiki</p><p class="spotlight-role">The Adi Kavi · First Poet</p></div>
-        <div class="spotlight-card"><span class="spotlight-symbol">🐒</span><p class="spotlight-name">Hanuman</p><p class="spotlight-role">Eternal Devotee · Ever-Present</p></div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ── FOOTER ─────────────────────────────────────────────────────── -->
-  <footer class="site-footer" id="legacy">
-    <div class="hero-ornament" style="margin-bottom:1.5rem;" aria-hidden="true">
-      <div class="ornament-line"></div>
-      <div class="ornament-dot"></div>
-      <div class="ornament-dot ornament-dot-large"></div>
-      <div class="ornament-dot"></div>
-      <div class="ornament-line rev"></div>
+        <div class="card-read-more" aria-hidden="true">Read More →</div>
+      </article>
     </div>
-    <p class="footer-kicker">॥ रामो विग्रहवान् धर्मः ॥</p>
-    <p class="footer-title">Valmiki's Immortal Vision — A Cinematic Tribute</p>
-    <div class="footer-nav">
-      <a href="index.html#characters">Characters</a>
-      <a href="#top">Back to Top</a>
-      <a href="#kandas">All Kandas</a>
-    </div>
-    <p class="footer-copy">A tribute to the eternal dharma of Sri Rama · 24,000 shlokas · 7 Kandas · One eternal truth</p>
-  </footer>
 
-  <!-- ── EPISODE MODAL ───────────────────────────────────────────────── -->
-  <div class="episode-modal" id="episodeModal" role="dialog" aria-modal="true" aria-labelledby="modalEpTitle" aria-hidden="true">
-    <div class="modal-box" id="modalBox">
-      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close episode details">✕</button>
-      <p class="modal-tag" id="modalKanda"></p>
-      <h2 class="modal-title" id="modalEpTitle"></h2>
-      <div class="modal-body" id="modalBody"></div>
-      <div class="modal-characters" id="modalChars"></div>
+    <div class="gold-divider"><span class="gold-divider-symbol">✦</span></div>
+    <p class="spotlight-label">Figures of Uttara Kanda</p>
+    <div class="spotlight-row reveal">
+      <div class="spotlight-card"><span class="spotlight-glyph">Sri Rama</span><p class="spotlight-name">Sri Rama</p><p class="spotlight-role">The Perfect King · Vishnu's Avatar</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Sita Devi</span><p class="spotlight-name">Sita Devi</p><p class="spotlight-role">Daughter of Earth · Returned</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Lava &amp; Kusha</span><p class="spotlight-name">Lava and Kusha</p><p class="spotlight-role">Twin Princes · Singers of the Epic</p></div>
+      <div class="spotlight-card"><span class="spotlight-glyph">Valmiki</span><p class="spotlight-name">Valmiki</p><p class="spotlight-role">The Adi Kavi · First Poet</p></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══ COSMIC TIMELINE ══════════════════════════════════════════════ -->
+<section class="timeline-section" id="timeline">
+  <div class="timeline-heading">
+    <span class="section-kicker">The Complete Arc</span>
+    <h2>The Cosmic Timeline</h2>
+  </div>
+  <div class="timeline-scroll" id="timelineScroll" role="navigation" aria-label="Navigate between Kandas">
+    <div class="timeline-track" id="timelineTrack">
+      <!-- Nodes injected by JS -->
     </div>
   </div>
+</section>
 
-  <script>
-    // ─── LOADER ────────────────────────────────────────────────────────
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('pageLoader').classList.add('loaded');
-      }, 900);
-    });
+<!-- FOOTER -->
+<footer class="site-footer" id="legacy">
+  <div class="ornament" aria-hidden="true" style="justify-content:center;margin-bottom:1.8rem">
+    <div class="ornament-line"></div>
+    <div class="ornament-dot"></div>
+    <div class="ornament-center"></div>
+    <div class="ornament-dot"></div>
+    <div class="ornament-line r"></div>
+  </div>
+  <p class="footer-kicker">॥ रामो विग्रहवान् धर्मः ॥</p>
+  <p class="footer-title">Valmiki's Immortal Vision — A Cinematic Tribute</p>
+  <nav class="footer-nav" aria-label="Footer navigation">
+    <a href="index.html">Characters</a>
+    <a href="#top">Back to Top</a>
+    <a href="#kandas">All Kandas</a>
+    <a href="#timeline">Timeline</a>
+  </nav>
+  <p class="footer-copy">A tribute to the eternal dharma of Sri Rama · 24,000 shlokas · 7 Kandas · One eternal truth</p>
+</footer>
 
-    // ─── REVEAL ON SCROLL ─────────────────────────────────────────────
-    const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((e, i) => {
-        if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('visible'), i * 60);
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.08 });
-    revealEls.forEach(el => observer.observe(el));
+<!-- MODAL -->
+<div class="episode-modal" id="episodeModal" role="dialog" aria-modal="true" aria-labelledby="modalEpTitle" aria-hidden="true">
+  <div class="modal-box" id="modalBox" role="document">
+    <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close episode">✕</button>
+    <p class="modal-kanda" id="modalKandaLabel"></p>
+    <h2 class="modal-title" id="modalEpTitle"></h2>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-chars" id="modalChars"></div>
+  </div>
+</div>
 
-    // ─── KANDA TABS ───────────────────────────────────────────────────
-    const tabs = document.querySelectorAll('.kanda-tab');
-    const sections = document.querySelectorAll('.kanda-section');
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const kanda = tab.dataset.kanda;
-
-        tabs.forEach(t => {
-          t.classList.remove('active');
-          t.setAttribute('aria-selected', 'false');
-        });
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
-
-        sections.forEach(s => {
-          s.classList.remove('active');
-          s.hidden = true;
-        });
-
-        const target = document.getElementById('kanda-' + kanda);
-        if (target) {
-          target.classList.add('active');
-          target.hidden = false;
-
-          // Trigger reveals inside the new section
-          const newReveals = target.querySelectorAll('.reveal:not(.visible)');
-          newReveals.forEach((el, i) => {
-            setTimeout(() => el.classList.add('visible'), i * 80 + 100);
-          });
-        }
-
-        // Smooth scroll to story
-        document.getElementById('story').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      });
-    });
-
-    // ─── CHARACTER SPOTLIGHT PHOTOS ─────────────────────────────────
-    const spotlightPhotoMap = {
-      'sri rama': 'rama',
-      'sita devi': 'sita',
-      'surpanakha': 'shurpanakha',
-      'vali': 'bali',
-      'lava & kusha': '',
-      'manthara': '',
-      'trijata': ''
-    };
-
-    document.querySelectorAll('.spotlight-card').forEach(card => {
-      const symbol = card.querySelector('.spotlight-symbol');
-      const name = card.querySelector('.spotlight-name')?.textContent.trim();
-      if (!symbol || !name) return;
-
-      const key = name.toLowerCase();
-      const fileBase = Object.prototype.hasOwnProperty.call(spotlightPhotoMap, key)
-        ? spotlightPhotoMap[key]
-        : key.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-
-      if (!fileBase) return;
-
-      symbol.innerHTML = `<img src="Photos/${fileBase}.png" alt="${name}" loading="lazy">`;
-    });
-
-    // ─── EPISODE MODAL ────────────────────────────────────────────────
-    const modal = document.getElementById('episodeModal');
-    const modalTitle = document.getElementById('modalEpTitle');
-    const modalKanda = document.getElementById('modalKanda');
-    const modalBody = document.getElementById('modalBody');
-    const modalChars = document.getElementById('modalChars');
-    const closeBtn = document.getElementById('modalCloseBtn');
-
-    document.querySelectorAll('.episode-card').forEach(card => {
-      card.addEventListener('click', () => {
-        modalTitle.textContent = card.dataset.title;
-        modalKanda.textContent = card.dataset.kanda;
-        modalBody.innerHTML = card.dataset.detail;
-
-        const chars = card.dataset.chars.split(',');
-        modalChars.innerHTML = chars.map(c =>
-          `<span class="modal-char-tag">${c.trim()}</span>`
-        ).join('');
-
-        modal.classList.add('open');
-        modal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-        closeBtn.focus();
-      });
-
-      // Keyboard support
-      card.setAttribute('tabindex', '0');
-      card.setAttribute('role', 'button');
-      card.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault(); card.click();
-        }
-      });
-    });
-
-    function closeModal() {
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
-    // ─── NAV ACTIVE STATE ─────────────────────────────────────────────
-    const navLinks = document.querySelectorAll('.nav-links a');
-    const sections2 = document.querySelectorAll('section[id], div[id]');
-    window.addEventListener('scroll', () => {
-      let current = '';
-      sections2.forEach(s => {
-        if (window.scrollY >= s.offsetTop - 100) current = s.id;
-      });
-      navLinks.forEach(l => {
-        l.style.color = l.getAttribute('href').includes(current) ?
-          'var(--gold)' : '';
-      });
-    }, { passive: true });
-  </script>
 </body>
 </html>

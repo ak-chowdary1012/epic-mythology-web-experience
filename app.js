@@ -1,7 +1,7 @@
 const CHARACTERS = [
   {
     id:1, name:"Rama", role:"Prince of Ayodhya · Avatar of Vishnu", category:"divine",
-    emoji:"🏹", img:"assets/images/rama.png", avatarBg:"linear-gradient(135deg,#1A3A6A,#2A5AA0)",
+    emoji:"🏹", img:"Photos/rama.png", avatarBg:"linear-gradient(135deg,#1A3A6A,#2A5AA0)",
     epithets:["Maryada Purushottam","Raghava","Dasharathi","Koshalendra"],
     priority:"divine",
     attributes:{
@@ -21,7 +21,7 @@ const CHARACTERS = [
   },
   {
     id:2, name:"Sita", role:"Princess of Mithila · Daughter of Earth", category:"divine",
-    emoji:"🌸", img:"assets/images/sita.png", avatarBg:"linear-gradient(135deg,#5A2A6A,#8A4A9A)",
+    emoji:"🌸", img:"Photos/sita.png", avatarBg:"linear-gradient(135deg,#5A2A6A,#8A4A9A)",
     epithets:["Janaki","Vaidehi","Maithili","Bhoomija"],
     priority:"divine",
     attributes:{
@@ -41,7 +41,7 @@ const CHARACTERS = [
   },
   {
     id:3, name:"Hanuman", role:"Vanara · Devotee of Rama · Son of Wind", category:"divine",
-    emoji:"🐒", img:"assets/images/hanuman.png", avatarBg:"linear-gradient(135deg,#5A3000,#9A5800)",
+    emoji:"🐒", img:"Photos/hanuman.png", avatarBg:"linear-gradient(135deg,#5A3000,#9A5800)",
     epithets:["Maruti","Anjaneya","Pavanputra","Bajrangbali","Mahavira"],
     priority:"divine",
     attributes:{
@@ -61,7 +61,7 @@ const CHARACTERS = [
   },
   {
     id:4, name:"Lakshmana", role:"Prince of Ayodhya · Eternal Brother", category:"hero",
-    emoji:"⚔️", img:"assets/images/lakshmana.png", avatarBg:"linear-gradient(135deg,#1A4A1A,#2A8A2A)",
+    emoji:"⚔️", img:"Photos/lakshmana.png", avatarBg:"linear-gradient(135deg,#1A4A1A,#2A8A2A)",
     epithets:["Saumitri","Ramanuja","Shatrughna-brother","Seshavatar"],
     priority:"hero",
     attributes:{
@@ -81,7 +81,7 @@ const CHARACTERS = [
   },
   {
     id:5, name:"Ravana", role:"King of Lanka · Lord of Rakshasas", category:"villain",
-    emoji:"👑", img:"assets/images/ravana.png", avatarBg:"linear-gradient(135deg,#4A0808,#900000)",
+    emoji:"👑", img:"Photos/ravana.png", avatarBg:"linear-gradient(135deg,#4A0808,#900000)",
     epithets:["Dashagriva","Lankapati","Paulastya","Lokesha"],
     priority:"villain",
     attributes:{
@@ -101,7 +101,7 @@ const CHARACTERS = [
   },
   {
     id:6, name:"Kaushalya", role:"Senior Queen of Ayodhya · Mother of Rama", category:"other",
-    emoji:"👸", img:"assets/images/kaushalya.png", avatarBg:"linear-gradient(135deg,#5A3A1A,#8A6A3A)",
+    emoji:"👸", img:"Photos/kaushalya.png", avatarBg:"linear-gradient(135deg,#5A3A1A,#8A6A3A)",
     epithets:["Ramajananī","Koshalā-nandini","Mahārānī"],
     priority:"other",
     attributes:{
@@ -119,7 +119,7 @@ const CHARACTERS = [
   },
   {
     id:7, name:"Kaikeyi", role:"Second Queen of Ayodhya", category:"other",
-    emoji:"💎", img:"assets/images/kaikeyi.png", avatarBg:"linear-gradient(135deg,#4A1A4A,#803080)",
+    emoji:"💎", img:"Photos/kaikeyi.png", avatarBg:"linear-gradient(135deg,#4A1A4A,#803080)",
     epithets:["Kekaya-putri","Bharata-janani","Dasharatha-priya"],
     priority:"other",
     attributes:{
@@ -138,7 +138,7 @@ const CHARACTERS = [
   },
   {
     id:8, name:"Dasharatha", role:"King of Ayodhya · Father of Rama", category:"other",
-    emoji:"🏛️", img:"assets/images/dasharatha.png", avatarBg:"linear-gradient(135deg,#3A3A0A,#707020)",
+    emoji:"🏛️", img:"Photos/dasharatha.png", avatarBg:"linear-gradient(135deg,#3A3A0A,#707020)",
     epithets:["Raghava-pita","Ikshvakuvansha","Shataratho","Dasyratha"],
     priority:"other",
     attributes:{
@@ -157,7 +157,7 @@ const CHARACTERS = [
   },
   {
     id:9, name:"Bharata", role:"Prince of Ayodhya · Ruler as Regent", category:"hero",
-    emoji:"🌿", img:"assets/images/bharata.png", avatarBg:"linear-gradient(135deg,#1A3A2A,#2A6A4A)",
+    emoji:"🌿", img:"Photos/bharata.png", avatarBg:"linear-gradient(135deg,#1A3A2A,#2A6A4A)",
     epithets:["Kaikeya-putra","Rama-bhakta","Padukadhipati"],
     priority:"hero",
     attributes:{
@@ -176,7 +176,7 @@ const CHARACTERS = [
   },
   {
     id:10, name:"Shatrughna", role:"Prince of Ayodhya · Youngest Brother", category:"hero",
-    emoji:"🗡️", img:"assets/images/shatrughna.png", avatarBg:"linear-gradient(135deg,#1A2A3A,#2A4A6A)",
+    emoji:"🗡️", img:"Photos/shatrughna.png", avatarBg:"linear-gradient(135deg,#1A2A3A,#2A4A6A)",
     epithets:["Sumitra-putra","Bharata-anuja","Lavana-vijaya"],
     priority:"hero",
     attributes:{
@@ -194,7 +194,7 @@ const CHARACTERS = [
   },
   {
     id:11, name:"Vishwamitra", role:"Sage · Rajaharshi · Brahmarshi", category:"sage",
-    emoji:"📿", img:"assets/images/vishwamitra.png", avatarBg:"linear-gradient(135deg,#1A1A4A,#3A3A8A)",
+    emoji:"📿", img:"Photos/vishwamitra.png", avatarBg:"linear-gradient(135deg,#1A1A4A,#3A3A8A)",
     epithets:["Kaushika","Brahmarshi","Rajaharshi","Mitra of the world"],
     priority:"sage",
     attributes:{
@@ -213,7 +213,7 @@ const CHARACTERS = [
   },
   {
     id:12, name:"Vasishtha", role:"Royal Guru of Ayodhya · Brahmarshi", category:"sage",
-    emoji:"🕯️", img:"assets/images/vasishtha.png", avatarBg:"linear-gradient(135deg,#2A1A0A,#5A3A1A)",
+    emoji:"🕯️", img:"Photos/vasishtha.png", avatarBg:"linear-gradient(135deg,#2A1A0A,#5A3A1A)",
     epithets:["Brahmarshi","Saptarishi","Ikshvaku-kulguru"],
     priority:"sage",
     attributes:{
@@ -232,7 +232,7 @@ const CHARACTERS = [
   },
   {
     id:13, name:"Sugriva", role:"Vanara King of Kishkindha", category:"ally",
-    emoji:"🦁", img:"assets/images/sugriva.png", avatarBg:"linear-gradient(135deg,#3A2A0A,#7A6020)",
+    emoji:"🦁", img:"Photos/sugriva.png", avatarBg:"linear-gradient(135deg,#3A2A0A,#7A6020)",
     epithets:["Riksharaja-putra","Kishkindha-Raja","Bali's brother"],
     priority:"ally",
     attributes:{
@@ -251,7 +251,7 @@ const CHARACTERS = [
   },
   {
     id:14, name:"Bali (Vali)", role:"Vanara King · Mightiest of Apes", category:"villain",
-    emoji:"⚡", img:"assets/images/bali.png", avatarBg:"linear-gradient(135deg,#3A0A0A,#7A2020)",
+    emoji:"⚡", img:"Photos/bali.png", avatarBg:"linear-gradient(135deg,#3A0A0A,#7A2020)",
     epithets:["Riksharajas-putra","Mahendra-son","Indra-son","Kishkindha-pati"],
     priority:"villain",
     attributes:{
@@ -271,7 +271,7 @@ const CHARACTERS = [
   },
   {
     id:15, name:"Hanuman's Leap — Jambavan", role:"Vanara Elder · Counselor", category:"ally",
-    emoji:"🐻", img:"assets/images/jambavan.png", avatarBg:"linear-gradient(135deg,#1A3A1A,#3A6A3A)",
+    emoji:"🐻", img:"Photos/jambavan.png", avatarBg:"linear-gradient(135deg,#1A3A1A,#3A6A3A)",
     epithets:["Riksharaj","Jambu-king","The All-Knowing Bear"],
     priority:"ally",
     attributes:{
@@ -289,7 +289,7 @@ const CHARACTERS = [
   },
   {
     id:16, name:"Angada", role:"Vanara Prince · Son of Bali", category:"ally",
-    emoji:"🦅", img:"assets/images/angada.png", avatarBg:"linear-gradient(135deg,#2A2A0A,#5A5A20)",
+    emoji:"🦅", img:"Photos/angada.png", avatarBg:"linear-gradient(135deg,#2A2A0A,#5A5A20)",
     epithets:["Bali-putra","Yuvraj of Kishkindha","Rama's ambassador"],
     priority:"ally",
     attributes:{
@@ -307,7 +307,7 @@ const CHARACTERS = [
   },
   {
     id:17, name:"Vibhishana", role:"Brother of Ravana · King of Lanka", category:"ally",
-    emoji:"🙏", img:"assets/images/vibhishana.png", avatarBg:"linear-gradient(135deg,#0A2A3A,#1A5A6A)",
+    emoji:"🙏", img:"Photos/vibhishana.png", avatarBg:"linear-gradient(135deg,#0A2A3A,#1A5A6A)",
     epithets:["Lankesh","Dharma-rakshasa","Ravana-bhrata"],
     priority:"ally",
     attributes:{
@@ -326,7 +326,7 @@ const CHARACTERS = [
   },
   {
     id:18, name:"Kumbhakarna", role:"Rakshasa · Ravana's Brother · Sleeper Giant", category:"villain",
-    emoji:"💪", img:"assets/images/kumbhakarna.png", avatarBg:"linear-gradient(135deg,#3A1A0A,#7A3A1A)",
+    emoji:"💪", img:"Photos/kumbhakarna.png", avatarBg:"linear-gradient(135deg,#3A1A0A,#7A3A1A)",
     epithets:["Raktaaksha","Ravana-bhrata","Mahakaya"],
     priority:"villain",
     attributes:{
@@ -345,7 +345,7 @@ const CHARACTERS = [
   },
   {
     id:19, name:"Indrajit (Meghanada)", role:"Prince of Lanka · Conqueror of Indra", category:"villain",
-    emoji:"🌩️", img:"assets/images/indrajit.png", avatarBg:"linear-gradient(135deg,#1A0A3A,#4A2080)",
+    emoji:"🌩️", img:"Photos/indrajit.png", avatarBg:"linear-gradient(135deg,#1A0A3A,#4A2080)",
     epithets:["Meghanada","Ravana-putra","Shakti-wielder","Brahmastra-user"],
     priority:"villain",
     attributes:{
@@ -364,7 +364,7 @@ const CHARACTERS = [
   },
   {
     id:20, name:"Shurpanakha", role:"Rakshasi · Ravana's Sister", category:"villain",
-    emoji:"🌊", img:"assets/images/shurpanakha.png", avatarBg:"linear-gradient(135deg,#3A1A2A,#703050)",
+    emoji:"🌊", img:"Photos/shurpanakha.png", avatarBg:"linear-gradient(135deg,#3A1A2A,#703050)",
     epithets:["Ravana-bhagini","Minakshi (original form)","Lanka-nari"],
     priority:"villain",
     attributes:{
@@ -381,7 +381,7 @@ const CHARACTERS = [
   },
   {
     id:21, name:"Maricha", role:"Rakshasa · Uncle of Ravana", category:"villain",
-    emoji:"🦌", img:"assets/images/maricha.png", avatarBg:"linear-gradient(135deg,#2A2A1A,#505030)",
+    emoji:"🦌", img:"Photos/maricha.png", avatarBg:"linear-gradient(135deg,#2A2A1A,#505030)",
     epithets:["Tataka-putra","Maya-mriga","Suvarna-mriga"],
     priority:"villain",
     attributes:{
@@ -399,7 +399,7 @@ const CHARACTERS = [
   },
   {
     id:22, name:"Jatayu", role:"Vulture King · Guardian of the Skies", category:"ally",
-    emoji:"🦅", img:"assets/images/jatayu.png", avatarBg:"linear-gradient(135deg,#2A1A0A,#5A3510)",
+    emoji:"🦅", img:"Photos/jatayu.png", avatarBg:"linear-gradient(135deg,#2A1A0A,#5A3510)",
     epithets:["Gridhra-raja","Dasharatha-mitra","Sky guardian","Punya-pakshi"],
     priority:"ally",
     attributes:{
@@ -418,7 +418,7 @@ const CHARACTERS = [
   },
   {
     id:23, name:"Sampati", role:"Elder Vulture · Brother of Jatayu", category:"ally",
-    emoji:"🦉", img:"assets/images/sampati.png", avatarBg:"linear-gradient(135deg,#1A1A2A,#3A3A5A)",
+    emoji:"🦉", img:"Photos/sampati.png", avatarBg:"linear-gradient(135deg,#1A1A2A,#3A3A5A)",
     epithets:["Jatayu-bhrata","Gridhra-jyeshtha"],
     priority:"ally",
     attributes:{
@@ -435,7 +435,7 @@ const CHARACTERS = [
   },
   {
     id:24, name:"Mandodari", role:"Queen of Lanka · Wife of Ravana", category:"other",
-    emoji:"🌺", img:"assets/images/mandodari.png", avatarBg:"linear-gradient(135deg,#3A1A3A,#6A3060)",
+    emoji:"🌺", img:"Photos/mandodari.png", avatarBg:"linear-gradient(135deg,#3A1A3A,#6A3060)",
     epithets:["Pativrata","Lankeswari","Maya-putri"],
     priority:"other",
     attributes:{
@@ -453,7 +453,7 @@ const CHARACTERS = [
   },
   {
     id:25, name:"Tara", role:"Vanara Queen · Consort of Bali", category:"other",
-    emoji:"⭐", img:"assets/images/tara.png", avatarBg:"linear-gradient(135deg,#2A2A3A,#505070)",
+    emoji:"⭐", img:"Photos/tara.png", avatarBg:"linear-gradient(135deg,#2A2A3A,#505070)",
     epithets:["Bali-patni","Angada-mata","Panchakanya"],
     priority:"other",
     attributes:{
@@ -470,7 +470,7 @@ const CHARACTERS = [
   },
   {
     id:26, name:"Urmila", role:"Princess of Mithila · Wife of Lakshmana", category:"other",
-    emoji:"🌙", img:"assets/images/urmila.png", avatarBg:"linear-gradient(135deg,#1A1A3A,#303070)",
+    emoji:"🌙", img:"Photos/urmila.png", avatarBg:"linear-gradient(135deg,#1A1A3A,#303070)",
     epithets:["Mithila-nandini","Janaki-bhagini","Nidra-devi"],
     priority:"other",
     attributes:{
@@ -488,7 +488,7 @@ const CHARACTERS = [
   },
   {
     id:27, name:"Agastya", role:"Sage · Vindhya-tamer · Southern Vedic master", category:"sage",
-    emoji:"📖", img:"assets/images/agastya.png", avatarBg:"linear-gradient(135deg,#1A2A1A,#3A5A3A)",
+    emoji:"📖", img:"Photos/agastya.png", avatarBg:"linear-gradient(135deg,#1A2A1A,#3A5A3A)",
     epithets:["Mitra-Varuna-putra","Pitru-sacrificer","Vindhya-subjugator"],
     priority:"sage",
     attributes:{
@@ -506,7 +506,7 @@ const CHARACTERS = [
   },
   {
     id:28, name:"Nala", role:"Vanara Engineer · Builder of Rama Setu", category:"ally",
-    emoji:"🌉", img:"assets/images/nala.png", avatarBg:"linear-gradient(135deg,#0A2A2A,#1A5A5A)",
+    emoji:"🌉", img:"Photos/nala.png", avatarBg:"linear-gradient(135deg,#0A2A2A,#1A5A5A)",
     epithets:["Vishwakarma-putra","Setu-karta","Setubandha Nala"],
     priority:"ally",
     attributes:{
@@ -524,7 +524,7 @@ const CHARACTERS = [
   },
   {
     id:29, name:"Garuda", role:"King of Birds · Mount of Vishnu", category:"divine",
-    emoji:"🦅", img:"assets/images/garuda.png", avatarBg:"linear-gradient(135deg,#3A2A0A,#8A6A1A)",
+    emoji:"🦅", img:"Photos/garuda.png", avatarBg:"linear-gradient(135deg,#3A2A0A,#8A6A1A)",
     epithets:["Vainateya","Suparna","Vishnu-vahan","Nagantaka"],
     priority:"divine",
     attributes:{
@@ -542,7 +542,7 @@ const CHARACTERS = [
   },
   {
     id:30, name:"Valmiki", role:"Sage · Author of the Ramayana", category:"sage",
-    emoji:"🪷", img:"assets/images/valmiki.png", avatarBg:"linear-gradient(135deg,#1A0A2A,#3A1A5A)",
+    emoji:"🪷", img:"Photos/valmiki.png", avatarBg:"linear-gradient(135deg,#1A0A2A,#3A1A5A)",
     epithets:["Adikavi","Prachetas-putra","Brahmarshi","Ramayana-karta"],
     priority:"sage",
     attributes:{
@@ -585,12 +585,12 @@ function renderCards(){
     const matchSearch = !searchQuery || characterMatchesQuery(c);
     return matchFilter && matchSearch;
   });
-  
+
   if(!filtered.length){
     grid.innerHTML='<div class="no-results">No souls found matching your search</div>';
     return;
   }
-  
+
   grid.innerHTML = filtered.map((c,i)=>`
     <button class="char-card" type="button" data-character-id="${c.id}" aria-label="Open ${c.name} details" style="animation-delay:${i*0.05}s">
       <div class="card-inner">
@@ -611,17 +611,17 @@ function renderCards(){
 function openModal(id){
   const c = CHARACTERS.find(x=>x.id===id);
   if(!c)return;
-  
+
   const attrHtml = Object.entries(c.attributes).map(([k,v])=>`
     <div class="attr-item">
       <div class="attr-label">${k}</div>
       <div class="attr-value">${v}</div>
     </div>
   `).join('');
-  
+
   const tagHtml = c.epithets.map(e=>`<span class="modal-epithet-tag">${e}</span>`).join('');
   const traitHtml = c.traits.map(t=>`<span class="trait-pill">${t}</span>`).join('');
-  
+
   document.getElementById('modalContent').innerHTML = `
     <div class="modal-header">
       <div class="modal-avatar" style="background:${c.avatarBg};"><img class="avatar-image" src="${c.img}" alt="${c.name}"><span class="avatar-fallback">${c.emoji}</span></div>
@@ -632,22 +632,22 @@ function openModal(id){
     <div class="modal-body">
       <div class="section-title">Sacred Attributes</div>
       <div class="attr-grid">${attrHtml}</div>
-      
+
       <div class="section-title">Character & Nature</div>
       <div class="trait-pills">${traitHtml}</div>
-      
+
       <div class="section-title">The Complete Story</div>
       <div class="section-text">${c.description}</div>
-      
+
       <div class="star-divider">✦ ✦ ✦</div>
-      
+
       <div class="section-title">Sacred Journey</div>
       <div class="section-text">${c.story}</div>
-      
+
       <div class="story-verse">${c.verse}</div>
     </div>
   `;
-  
+
   lastFocusedElement = document.activeElement;
   const modalOverlay = document.getElementById('modalOverlay');
   modalOverlay.classList.add('active');
@@ -748,4 +748,193 @@ function init(){
   window.setTimeout(hideLoader,900);
 }
 
-init();
+
+function initStoryPage(){
+  /* ─────────────────────────────────────────────
+     LOADER
+  ───────────────────────────────────────────── */
+  window.addEventListener('load', () => {
+    setTimeout(() => document.getElementById('pageLoader').classList.add('loaded'), 800);
+  });
+
+  /* ─────────────────────────────────────────────
+     REVEAL ON SCROLL
+  ───────────────────────────────────────────── */
+  const revealAll = () => {
+    document.querySelectorAll('.kanda-section.active .reveal:not(.visible)')
+      .forEach((el, i) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 60) {
+          setTimeout(() => el.classList.add('visible'), i * 55);
+        }
+      });
+  };
+  window.addEventListener('scroll', revealAll, { passive: true });
+  revealAll();
+
+  /* ─────────────────────────────────────────────
+     KANDA TAB SWITCHING
+  ───────────────────────────────────────────── */
+  const tabs = document.querySelectorAll('.kanda-tab');
+  const sections = document.querySelectorAll('.kanda-section');
+
+  function activateKanda(kanda) {
+    tabs.forEach(t => {
+      const isActive = t.dataset.kanda === kanda;
+      t.classList.toggle('active', isActive);
+      t.setAttribute('aria-selected', isActive);
+    });
+    sections.forEach(s => {
+      const isActive = s.id === 'kanda-' + kanda;
+      s.classList.toggle('active', isActive);
+      s.hidden = !isActive;
+      if (isActive) {
+        // stagger reveals
+        s.querySelectorAll('.reveal').forEach((el, i) => {
+          setTimeout(() => el.classList.add('visible'), i * 70 + 80);
+        });
+      }
+    });
+    // Update timeline active node
+    document.querySelectorAll('.timeline-node').forEach(n => {
+      n.classList.toggle('active-node', n.dataset.kanda === kanda);
+    });
+    // Update URL hash silently
+    history.replaceState(null, '', '#' + kanda);
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      activateKanda(tab.dataset.kanda);
+      document.getElementById('story').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  /* ─────────────────────────────────────────────
+     HASH ROUTING (Story.html#bala etc.)
+  ───────────────────────────────────────────── */
+  const KANDAS = ['bala','ayodhya','aranya','kishkindha','sundara','yuddha','uttara'];
+  function handleHash() {
+    const hash = location.hash.replace('#','');
+    if (KANDAS.includes(hash)) activateKanda(hash);
+  }
+  window.addEventListener('hashchange', handleHash);
+  handleHash();
+
+  /* ─────────────────────────────────────────────
+     COSMIC TIMELINE
+  ───────────────────────────────────────────── */
+  const KANDA_DATA = [
+    { id:'bala',       num:'I',   name:'Bala Kanda',       sub:'Book of Youth',       sargas:'77 Sargas'  },
+    { id:'ayodhya',    num:'II',  name:'Ayodhya Kanda',    sub:'Book of Ayodhya',     sargas:'119 Sargas' },
+    { id:'aranya',     num:'III', name:'Aranya Kanda',     sub:'Book of the Forest',  sargas:'75 Sargas'  },
+    { id:'kishkindha', num:'IV',  name:'Kishkindha Kanda', sub:'Book of Kishkindha',  sargas:'67 Sargas'  },
+    { id:'sundara',    num:'V',   name:'Sundara Kanda',    sub:'The Beautiful Book',  sargas:'68 Sargas'  },
+    { id:'yuddha',     num:'VI',  name:'Yuddha Kanda',     sub:'Book of War',         sargas:'128 Sargas' },
+    { id:'uttara',     num:'VII', name:'Uttara Kanda',     sub:'The Final Book',      sargas:'111 Sargas' },
+  ];
+
+  const track = document.getElementById('timelineTrack');
+  KANDA_DATA.forEach((k, i) => {
+    if (i > 0) {
+      const conn = document.createElement('div');
+      conn.className = 'timeline-connector';
+      track.appendChild(conn);
+    }
+    const node = document.createElement('div');
+    node.className = 'timeline-node' + (k.id === 'bala' ? ' active-node' : '');
+    node.dataset.kanda = k.id;
+    node.setAttribute('tabindex', '0');
+    node.setAttribute('role', 'button');
+    node.setAttribute('aria-label', `Go to ${k.name}`);
+    node.innerHTML = `
+      <div class="node-circle"><span class="node-num">${k.num}</span></div>
+      <div class="node-info">
+        <p class="node-title">${k.name}</p>
+        <p class="node-subtitle">${k.sub}</p>
+        <p class="node-sargas">${k.sargas}</p>
+      </div>`;
+    node.addEventListener('click', () => {
+      activateKanda(k.id);
+      document.getElementById('kandas').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+    node.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); node.click(); }
+    });
+    track.appendChild(node);
+  });
+  handleHash();
+
+  // Drag-to-scroll timeline
+  const scroll = document.getElementById('timelineScroll');
+  let isDown = false, startX, scrollLeft;
+  scroll.addEventListener('mousedown', e => {
+    isDown = true; startX = e.pageX - scroll.offsetLeft; scrollLeft = scroll.scrollLeft;
+  });
+  scroll.addEventListener('mouseleave', () => isDown = false);
+  scroll.addEventListener('mouseup', () => isDown = false);
+  scroll.addEventListener('mousemove', e => {
+    if (!isDown) return; e.preventDefault();
+    const x = e.pageX - scroll.offsetLeft;
+    scroll.scrollLeft = scrollLeft - (x - startX);
+  });
+
+  /* ─────────────────────────────────────────────
+     EPISODE MODAL
+  ───────────────────────────────────────────── */
+  const modal      = document.getElementById('episodeModal');
+  const modalTitle = document.getElementById('modalEpTitle');
+  const modalKanda = document.getElementById('modalKandaLabel');
+  const modalBody  = document.getElementById('modalBody');
+  const modalChars = document.getElementById('modalChars');
+  const closeBtn   = document.getElementById('modalCloseBtn');
+
+  document.querySelectorAll('.episode-card').forEach(card => {
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('role', 'button');
+    card.addEventListener('click', () => openModal(card));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(card); }
+    });
+  });
+
+  function openModal(card) {
+    modalTitle.textContent = card.dataset.title;
+    modalKanda.textContent = card.dataset.kanda;
+    modalBody.innerHTML    = card.dataset.detail;
+    modalChars.innerHTML   = card.dataset.chars.split(',')
+      .map(c => `<span class="modal-char">${c.trim()}</span>`).join('');
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  function closeModal() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  /* ─────────────────────────────────────────────
+     NAV ACTIVE STATE
+  ───────────────────────────────────────────── */
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    document.querySelectorAll('[id]').forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }, { passive: true });
+}
+
+if(document.body.classList.contains('story-page')){
+  initStoryPage();
+}else if(document.getElementById('characterGrid')){
+  init();
+}
